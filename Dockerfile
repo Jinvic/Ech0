@@ -1,64 +1,49 @@
 # =================== 构建阶段 ===================
-FROM alpine:latest AS builder
+FROM golang:1.25.3-alpine AS builder
 
-WORKDIR /app
+WORKDIR /src
+
+# 安装 Node.js 和 pnpm
+RUN apk add --no-cache nodejs npm bash
+RUN npm install -g pnpm
+
+# 设置时区（可选）
 ENV TZ=Asia/Shanghai
 
-# 获取构建平台信息
-ARG TARGETOS
-ARG TARGETARCH
-ARG TARGETVARIANT
+# 复制 go mod 文件，先下载依赖（缓存友好）
+COPY go.mod go.sum ./
+RUN go mod download
 
-# 创建数据目录
-RUN mkdir -p /app/data
+# 复制整个源码
+COPY . .
 
-# 创建备份目录
-RUN mkdir -p /app/backup
+# 构建前端
+RUN cd web && pnpm install --frozen-lockfile && pnpm build --mode production
 
-# 创建数据目录(embed版无需手动创建template)
-# RUN mkdir -p /app/data && \
-#     mkdir -p /app/template
-
-# 将所有平台的 ech0 二进制复制进镜像(embed版无需复制前端资源)
-COPY /backend-artifacts/* /tmp/
-
-# 将所有平台的 ech0 二进制和前端资源复制进镜像
-# COPY /backend-artifacts/* /tmp/
-# COPY /frontend-asset/frontend.tar.gz /tmp/
-
-# 解压对应平台的 ech0 二进制
-RUN mkdir -p /app/template && \
-    if [ "$TARGETOS" = "linux" ] && [ "$TARGETARCH" = "amd64" ]; then \
-       tar -xzf /tmp/ech0-linux-amd64.tar.gz -C /tmp && mv /tmp/ech0-linux-amd64 /app/ech0; \
-    elif [ "$TARGETOS" = "linux" ] && [ "$TARGETARCH" = "arm64" ]; then \
-       tar -xzf /tmp/ech0-linux-arm64.tar.gz -C /tmp && mv /tmp/ech0-linux-arm64 /app/ech0; \
-    elif [ "$TARGETOS" = "linux" ] && [ "$TARGETARCH" = "arm" ] && [ "$TARGETVARIANT" = "v7" ]; then \
-       tar -xzf /tmp/ech0-linux-armv7.tar.gz -C /tmp && mv /tmp/ech0-linux-armv7 /app/ech0; \
-    else \
-       echo "Unsupported platform: $TARGETOS/$TARGETARCH$TARGETVARIANT" && exit 1; \
-    fi && \
-    # 解压前端静态资源到 /app/template
-   #  tar -xzf /tmp/frontend.tar.gz -C /app/template && \
-    # 清理临时文件
-    rm -rf /tmp/*
+# 编译 Go 二进制（已自动 embed /web/dist）
+# 使用 CGO_ENABLED=0 以生成静态二进制（兼容 Alpine）
+RUN CGO_ENABLED=0 GOOS=linux go build -tags netgo -ldflags="-w -s" -o ech0 ./main.go
 
 # =================== 最终镜像 ===================
-# FROM debian:bookworm-slim
 FROM alpine:latest
 
 WORKDIR /app
-ENV TZ=Asia/Shanghai
 
-COPY --from=builder /app /app
+# 安装 ca-certificates（便于 HTTPS 请求）
+RUN apk --no-cache add ca-certificates tzdata && \
+    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone
 
-RUN ls -lh /app
+# 创建数据和备份目录
+RUN mkdir -p /app/data /app/backup
 
-# 设置 ech0 二进制文件的权限
+# 从 builder 阶段复制二进制
+COPY --from=builder /src/ech0 /app/ech0
+
+# 设置权限
 RUN chmod +x /app/ech0
 
-EXPOSE 6277
-EXPOSE 6278
+EXPOSE 6277 6278
 
 ENTRYPOINT ["/app/ech0"]
-
 CMD ["serve"]
