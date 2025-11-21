@@ -67,6 +67,12 @@ func NewMinioStorage(
 		Creds:  credentials.NewStaticV4(accessKey, secretKey, ""),
 		Secure: secure,
 		Region: region,
+		BucketLookupViaURL: func(u url.URL, bucketName string) minio.BucketLookupType {
+			if IsTencentCOSEndpoint(u) {
+				return minio.BucketLookupDNS
+			}
+			return minio.BucketLookupAuto
+		},
 	})
 	if err != nil {
 		return nil, fmt.Errorf("failed to create Minio client: %w", err)
@@ -203,4 +209,21 @@ func (m *minioStorage) Upload(ctx context.Context, objectName string, r io.Reade
 		return fmt.Errorf("failed to upload object: %w", err)
 	}
 	return nil
+}
+
+// IsTencentCOSEndpoint - Match if it is exactly Tencent Cloud COS endpoint.
+func IsTencentCOSEndpoint(endpointURL url.URL) bool {
+	hostname := endpointURL.Hostname()
+
+	return strings.HasSuffix(hostname, "myqcloud.com") ||
+		strings.HasSuffix(hostname, "tencentcos.cn")
+}
+
+// CustomBucketLookupViaURL implements minio.BucketLookupViaURL function.
+func CustomBucketLookupViaURL(endpointURL url.URL, bucketName string) minio.BucketLookupType {
+	// 腾讯云COS支持VirtualHostStyle
+	if IsTencentCOSEndpoint(endpointURL) {
+		return minio.BucketLookupDNS
+	}
+	return minio.BucketLookupAuto
 }
