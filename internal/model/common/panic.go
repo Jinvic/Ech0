@@ -2,14 +2,14 @@ package model
 
 // Panic Constants
 const (
-	INIT_LOGGER_PANIC          = "初始化 Logger 失败"
-	READ_CONFIG_PANIC          = "读取配置文件失败"
-	CREATE_DB_PATH_PANIC       = "创建数据库路径失败"
-	DATABASE_NOT_INITED        = "数据库未初始化"
-	INIT_DATABASE_PANIC        = "数据库初始化失败"
-	MIGRATE_DB_PANIC           = "数据库迁移失败"
-	INIT_HANDLERS_PANIC        = "初始化 Handlers 失败"
-	INIT_TASKER_PANIC          = "初始化 Tasker 失败"
-	INIT_EVENT_REGISTRAR_PANIC = "初始化 EventRegistrar 失败"
-	GIN_RUN_FAILED             = "启动 GIN 服务器失败"
+	INIT_LOGGER_PANIC          = "panic.init_logger_panic"
+	READ_CONFIG_PANIC          = "panic.read_config_panic"
+	CREATE_DB_PATH_PANIC       = "panic.create_db_path_panic"
+	DATABASE_NOT_INITED        = "panic.database_not_inited"
+	INIT_DATABASE_PANIC        = "panic.init_database_panic"
+	MIGRATE_DB_PANIC           = "panic.migrate_db_panic"
+	INIT_HANDLERS_PANIC        = "panic.init_handlers_panic"
+	INIT_TASKER_PANIC          = "panic.init_tasker_panic"
+	INIT_EVENT_REGISTRAR_PANIC = "panic.init_event_registrar_panic"
+	GIN_RUN_FAILED             = "panic.gin_run_failed"
 )

@@ -8,105 +8,105 @@ type ServerError struct {
 
 // 失败相关的常量
 const (
-	INVALID_FILE_PATH      = "无效的文件路径"
-	INVALID_REQUEST_BODY   = "无效的请求体"
-	INVALID_PARAMS_BODY    = "无效参数"
-	INVALID_QUERY_PARAMS   = "无效的查询参数"
-	INVALID_REQUEST_METHOD = "无效的请求方法"
+	INVALID_FILE_PATH      = "error.invalid_file_path"
+	INVALID_REQUEST_BODY   = "error.invalid_request_body"
+	INVALID_PARAMS_BODY    = "error.invalid_params_body"
+	INVALID_QUERY_PARAMS   = "error.invalid_query_params"
+	INVALID_REQUEST_METHOD = "error.invalid_request_method"
 )
 
 // Auth 错误相关常量
 const (
-	USERNAME_OR_PASSWORD_NOT_BE_EMPTY = "用户名或密码不能为空"
-	PASSWORD_INCORRECT                = "密码错误"
-	USER_NOTFOUND                     = "用户不存在"
-	USER_COUNT_EXCEED_LIMIT           = "用户数量超过限制"
-	USERNAME_HAS_EXISTS               = "用户名已存在"
-	TOKEN_NOT_FOUND                   = "未找到令牌,请点击右上角登录"
-	TOKEN_NOT_VALID                   = "令牌无效，请重新登录"
-	TOKEN_PARSE_ERROR                 = "令牌解析失败，请尝试重新登陆"
-	USER_REGISTER_NOT_ALLOW           = "当前系统禁止注册新用户"
+	USERNAME_OR_PASSWORD_NOT_BE_EMPTY = "error.username_or_password_not_be_empty"
+	PASSWORD_INCORRECT                = "error.password_incorrect"
+	USER_NOTFOUND                     = "error.user_notfound"
+	USER_COUNT_EXCEED_LIMIT           = "error.user_count_exceed_limit"
+	USERNAME_HAS_EXISTS               = "error.username_has_exists"
+	TOKEN_NOT_FOUND                   = "error.token_not_found"
+	TOKEN_NOT_VALID                   = "error.token_not_valid"
+	TOKEN_PARSE_ERROR                 = "error.token_parse_error"
+	USER_REGISTER_NOT_ALLOW           = "error.user_register_not_allow"
 )
 
 // Echo 错误相关常量
 const (
-	NO_PERMISSION_DENIED  = "没有权限,请联系系统管理员"
-	ECHO_CAN_NOT_BE_EMPTY = "ECHO 内容不能为空"
-	ECHO_NOT_FOUND        = "找不到Echo"
+	NO_PERMISSION_DENIED  = "error.no_permission_denied"
+	ECHO_CAN_NOT_BE_EMPTY = "error.echo_can_not_be_empty"
+	ECHO_NOT_FOUND        = "error.echo_not_found"
 )
 
 // Common 错误相关常量
 const (
-	NO_FILE_UPLOAD_ERROR   = "找不到上传的文件"
-	NO_FILE_STORAGE_ERROR  = "未知存储方式"
-	FILE_TYPE_NOT_ALLOWED  = "不支持的文件类型"
-	FILE_SIZE_EXCEED_LIMIT = "文件大小超过限制"
-	IMAGE_NOT_FOUND        = "图片未找到"
-	INVALID_PARAMS         = "错误的参数"
-	SIGNUP_FIRST           = "请先注册用户"
-	S3_NOT_ENABLED         = "S3存储未启用"
-	S3_NOT_CONFIGURED      = "S3存储未配置"
-	S3_CONFIG_ERROR        = "S3存储配置错误"
+	NO_FILE_UPLOAD_ERROR   = "error.no_file_upload_error"
+	NO_FILE_STORAGE_ERROR  = "error.no_file_storage_error"
+	FILE_TYPE_NOT_ALLOWED  = "error.file_type_not_allowed"
+	FILE_SIZE_EXCEED_LIMIT = "error.file_size_exceed_limit"
+	IMAGE_NOT_FOUND        = "error.image_not_found"
+	INVALID_PARAMS         = "error.invalid_params"
+	SIGNUP_FIRST           = "error.signup_first"
+	S3_NOT_ENABLED         = "error.s3_not_enabled"
+	S3_NOT_CONFIGURED      = "error.s3_not_configured"
+	S3_CONFIG_ERROR        = "error.s3_config_error"
 )
 
 // Inbox 错误相关常量
 const (
-	INBOX_NOT_FOUND = "收件箱消息不存在"
+	INBOX_NOT_FOUND = "error.inbox_not_found"
 )
 
 // User 错误相关常量
 const (
-	USERNAME_ALREADY_EXISTS        = "用户名已存在"
-	FAILED_TO_GET_GITHUB_LOGIN_URL = "获取 GitHub 登录 URL 失败"
-	FAILED_TO_GET_GOOGLE_LOGIN_URL = "获取 Google 登录 URL 失败"
-	FAILED_TO_GET_QQ_LOGIN_URL     = "获取 QQ 登录 URL 失败"
-	FAILED_TO_GET_CUSTOM_LOGIN_URL = "获取自定义登录 URL 失败"
-	OAUTH2_NOT_CONFIGURED          = "OAuth2 未配置"
-	OAUTH2_NOT_ENABLED             = "OAuth2 未启用"
-	NO_PERMISSION_BINDING_GITHUB   = "没有权限绑定 GitHub 账号"
-	NO_PERMISSION_BINDING_GOOGLE   = "没有权限绑定 Google 账号"
-	NO_PERMISSION_BINDING_QQ       = "没有权限绑定 QQ 账号"
-	NO_PERMISSION_BINDING_CUSTOM   = "没有权限绑定自定义 OAuth2 账号"
+	USERNAME_ALREADY_EXISTS        = "error.username_already_exists"
+	FAILED_TO_GET_GITHUB_LOGIN_URL = "error.failed_to_get_github_login_url"
+	FAILED_TO_GET_GOOGLE_LOGIN_URL = "error.failed_to_get_google_login_url"
+	FAILED_TO_GET_QQ_LOGIN_URL     = "error.failed_to_get_qq_login_url"
+	FAILED_TO_GET_CUSTOM_LOGIN_URL = "error.failed_to_get_custom_login_url"
+	OAUTH2_NOT_CONFIGURED          = "error.oauth2_not_configured"
+	OAUTH2_NOT_ENABLED             = "error.oauth2_not_enabled"
+	NO_PERMISSION_BINDING_GITHUB   = "error.no_permission_binding_github"
+	NO_PERMISSION_BINDING_GOOGLE   = "error.no_permission_binding_google"
+	NO_PERMISSION_BINDING_QQ       = "error.no_permission_binding_qq"
+	NO_PERMISSION_BINDING_CUSTOM   = "error.no_permission_binding_custom"
 )
 
-// TO DO 错误相关常量
+// TODO 错误相关常量
 const (
-	TODO_EXCEED_LIMIT = "待办事项数量已达上限"
+	TODO_EXCEED_LIMIT = "error.todo_exceed_limit"
 )
 
 // Connect 错误相关常量
 const (
-	INVALID_CONNECTION_URL = "connect url不能为空"
-	CONNECT_HAS_EXISTS     = "connect 已经存在"
+	INVALID_CONNECTION_URL = "error.invalid_connection_url"
+	CONNECT_HAS_EXISTS     = "error.connect_has_exists"
 )
 
 // Setting 错误相关常量
 const (
-	NO_SUCH_COMMENT_PROVIDER            = "无效的评论服务提供者"
-	WEBHOOK_NAME_OR_URL_CANNOT_BE_EMPTY = "未填写 Webhook 名称或 URL"
-	INVALID_CRON_EXPRESSION             = "无效的 Cron 表达式"
+	NO_SUCH_COMMENT_PROVIDER            = "error.no_such_comment_provider"
+	WEBHOOK_NAME_OR_URL_CANNOT_BE_EMPTY = "error.webhook_name_or_url_cannot_be_empty"
+	INVALID_CRON_EXPRESSION             = "error.invalid_cron_expression"
 )
 
 // Backup 错误相关常量
 const (
-	SNAPSHOT_UPLOAD_FAILED  = "快照上传失败"
-	SNAPSHOT_RESTORE_FAILED = "快照恢复失败"
-	DATABASE_CLOSE_FAILED   = "数据库关闭失败"
+	SNAPSHOT_UPLOAD_FAILED  = "error.snapshot_upload_failed"
+	SNAPSHOT_RESTORE_FAILED = "error.snapshot_restore_failed"
+	DATABASE_CLOSE_FAILED   = "error.database_close_failed"
 )
 
 // Fediverse 错误相关常量
 const (
-	GET_ACTOR_ERROR         = "获取 Actor 信息失败"
-	ACTIVEPUB_NOT_ENABLED   = "ActivityPub 未启用"
-	FEDIVERSE_INVALID_INPUT = "无效的联邦参数"
-	FOLLOW_RELATION_MISSING = "未找到关注关系"
+	GET_ACTOR_ERROR         = "error.get_actor_error"
+	ACTIVEPUB_NOT_ENABLED   = "error.activepub_not_enabled"
+	FEDIVERSE_INVALID_INPUT = "error.fediverse_invalid_input"
+	FOLLOW_RELATION_MISSING = "error.follow_relation_missing"
 )
 
 // Agent 错误相关常量
 const (
-	AGENT_NOT_ENABLED        = "未启用 Agent "
-	AGENT_PROVIDER_NOT_FOUND = "未找到对应的 Agent 提供商"
-	AGENT_API_KEY_MISSING    = "未配置 Agent API Key 或 API Key 为空"
-	AGENT_MODEL_MISSING      = "未配置 Agent 模型名称或模型名称不能为空"
-	AGENT_SETTING_NOT_FOUND  = "未找到 Agent 设置"
+	AGENT_NOT_ENABLED        = "error.agent_not_enabled"
+	AGENT_PROVIDER_NOT_FOUND = "error.agent_provider_not_found"
+	AGENT_API_KEY_MISSING    = "error.agent_api_key_missing"
+	AGENT_MODEL_MISSING      = "error.agent_model_missing"
+	AGENT_SETTING_NOT_FOUND  = "error.agent_setting_not_found"
 )

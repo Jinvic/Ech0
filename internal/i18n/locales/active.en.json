@@ -1,0 +1,209 @@
+{
+  "server": {
+    "error": {
+      "invalid_file_path": {
+        "other": "Invalid file path"
+      },
+      "invalid_request_body": {
+        "other": "Invalid request body"
+      },
+      "invalid_params_body": {
+        "other": "Invalid parameters"
+      },
+      "invalid_query_params": {
+        "other": "Invalid query parameters"
+      },
+      "invalid_request_method": {
+        "other": "Invalid request method"
+      },
+      "no_file_upload_error": {
+        "other": "Uploaded file not found"
+      },
+      "no_file_storage_error": {
+        "other": "Unknown storage method"
+      },
+      "file_type_not_allowed": {
+        "other": "Unsupported file type"
+      },
+      "file_size_exceed_limit": {
+        "other": "File size exceeds limit"
+      },
+      "image_not_found": {
+        "other": "Image not found"
+      },
+      "invalid_params": {
+        "other": "Incorrect parameters"
+      },
+      "signup_first": {
+        "other": "Please register first"
+      },
+      "s3_not_enabled": {
+        "other": "S3 storage not enabled"
+      },
+      "s3_not_configured": {
+        "other": "S3 storage not configured"
+      },
+      "s3_config_error": {
+        "other": "S3 storage configuration error"
+      },
+      "no_permission_denied": {
+        "other": "No permission, please contact system administrator"
+      },
+      "echo_can_not_be_empty": {
+        "other": "ECHO content cannot be empty"
+      },
+      "echo_not_found": {
+        "other": "Echo not found"
+      },
+      "username_or_password_not_be_empty": {
+        "other": "Username or password cannot be empty"
+      },
+      "password_incorrect": {
+        "other": "Password incorrect"
+      },
+      "user_notfound": {
+        "other": "User does not exist"
+      },
+      "user_count_exceed_limit": {
+        "other": "Number of users exceeds limit"
+      },
+      "username_has_exists": {
+        "other": "Username already exists"
+      },
+      "token_not_found": {
+        "other": "Token not found, please click login in top right corner"
+      },
+      "token_not_valid": {
+        "other": "Invalid token, please log in again"
+      },
+      "token_parse_error": {
+        "other": "Token parsing failed, please try logging in again"
+      },
+      "user_register_not_allow": {
+        "other": "Current system does not allow registering new users"
+      },
+      "inbox_not_found": {
+        "other": "Inbox message does not exist"
+      },
+      "username_already_exists": {
+        "other": "Username already exists"
+      },
+      "failed_to_get_github_login_url": {
+        "other": "Failed to get GitHub login URL"
+      },
+      "failed_to_get_google_login_url": {
+        "other": "Failed to get Google login URL"
+      },
+      "failed_to_get_qq_login_url": {
+        "other": "Failed to get QQ login URL"
+      },
+      "failed_to_get_custom_login_url": {
+        "other": "Failed to get custom login URL"
+      },
+      "oauth2_not_configured": {
+        "other": "OAuth2 not configured"
+      },
+      "oauth2_not_enabled": {
+        "other": "OAuth2 not enabled"
+      },
+      "no_permission_binding_github": {
+        "other": "No permission to bind GitHub account"
+      },
+      "no_permission_binding_google": {
+        "other": "No permission to bind Google account"
+      },
+      "no_permission_binding_qq": {
+        "other": "No permission to bind QQ account"
+      },
+      "no_permission_binding_custom": {
+        "other": "No permission to bind custom OAuth2 account"
+      },
+      "todo_exceed_limit": {
+        "other": "Number of to-do items has reached the limit"
+      },
+      "invalid_connection_url": {
+        "other": "Connect URL cannot be empty"
+      },
+      "connect_has_exists": {
+        "other": "Connect already exists"
+      },
+      "no_such_comment_provider": {
+        "other": "Invalid comment service provider"
+      },
+      "webhook_name_or_url_cannot_be_empty": {
+        "other": "Webhook name or URL not filled"
+      },
+      "invalid_cron_expression": {
+        "other": "Invalid Cron expression"
+      },
+      "snapshot_upload_failed": {
+        "other": "Snapshot upload failed"
+      },
+      "snapshot_restore_failed": {
+        "other": "Snapshot restore failed"
+      },
+      "database_close_failed": {
+        "other": "Database close failed"
+      },
+      "get_actor_error": {
+        "other": "Failed to get Actor info"
+      },
+      "activepub_not_enabled": {
+        "other": "ActivityPub not enabled"
+      },
+      "fediverse_invalid_input": {
+        "other": "Invalid fediverse parameters"
+      },
+      "follow_relation_missing": {
+        "other": "Follow relationship not found"
+      },
+      "agent_not_enabled": {
+        "other": "Agent not enabled"
+      },
+      "agent_provider_not_found": {
+        "other": "No corresponding Agent provider found"
+      },
+      "agent_api_key_missing": {
+        "other": "Agent API Key not configured or API Key is empty"
+      },
+      "agent_model_missing": {
+        "other": "Agent model name not configured or model name cannot be empty"
+      },
+      "agent_setting_not_found": {
+        "other": "Agent setting not found"
+      }
+    }
+  },
+  "panic": {
+    "init_logger_panic": {
+      "other": "Failed to initialize Logger"
+    },
+    "read_config_panic": {
+      "other": "Failed to read configuration file"
+    },
+    "create_db_path_panic": {
+      "other": "Failed to create database path"
+    },
+    "database_not_inited": {
+      "other": "Database not initialized"
+    },
+    "init_database_panic": {
+      "other": "Failed to initialize database"
+    },
+    "migrate_db_panic": {
+      "other": "Database migration failed"
+    },
+    "init_handlers_panic": {
+      "other": "Failed to initialize Handlers"
+    },
+    "init_tasker_panic": {
+      "other": "Failed to initialize Tasker"
+    },
+    "init_event_registrar_panic": {
+      "other": "Failed to initialize EventRegistrar"
+    },
+    "gin_run_failed": {
+      "other": "Failed to start GIN server"
+    }
+  }
+}

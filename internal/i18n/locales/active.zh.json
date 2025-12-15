@@ -1,0 +1,209 @@
+{
+  "server": {
+    "error": {
+      "invalid_file_path": {
+        "other": "无效的文件路径"
+      },
+      "invalid_request_body": {
+        "other": "无效的请求体"
+      },
+      "invalid_params_body": {
+        "other": "无效参数"
+      },
+      "invalid_query_params": {
+        "other": "无效的查询参数"
+      },
+      "invalid_request_method": {
+        "other": "无效的请求方法"
+      },
+      "no_file_upload_error": {
+        "other": "找不到上传的文件"
+      },
+      "no_file_storage_error": {
+        "other": "未知存储方式"
+      },
+      "file_type_not_allowed": {
+        "other": "不支持的文件类型"
+      },
+      "file_size_exceed_limit": {
+        "other": "文件大小超过限制"
+      },
+      "image_not_found": {
+        "other": "图片未找到"
+      },
+      "invalid_params": {
+        "other": "错误的参数"
+      },
+      "signup_first": {
+        "other": "请先注册用户"
+      },
+      "s3_not_enabled": {
+        "other": "S3存储未启用"
+      },
+      "s3_not_configured": {
+        "other": "S3存储未配置"
+      },
+      "s3_config_error": {
+        "other": "S3存储配置错误"
+      },
+      "no_permission_denied": {
+        "other": "没有权限,请联系系统管理员"
+      },
+      "echo_can_not_be_empty": {
+        "other": "ECHO 内容不能为空"
+      },
+      "echo_not_found": {
+        "other": "找不到Echo"
+      },
+      "username_or_password_not_be_empty": {
+        "other": "用户名或密码不能为空"
+      },
+      "password_incorrect": {
+        "other": "密码错误"
+      },
+      "user_notfound": {
+        "other": "用户不存在"
+      },
+      "user_count_exceed_limit": {
+        "other": "用户数量超过限制"
+      },
+      "username_has_exists": {
+        "other": "用户名已存在"
+      },
+      "token_not_found": {
+        "other": "未找到令牌,请点击右上角登录"
+      },
+      "token_not_valid": {
+        "other": "令牌无效，请重新登录"
+      },
+      "token_parse_error": {
+        "other": "令牌解析失败，请尝试重新登陆"
+      },
+      "user_register_not_allow": {
+        "other": "当前系统禁止注册新用户"
+      },
+      "inbox_not_found": {
+        "other": "收件箱消息不存在"
+      },
+      "username_already_exists": {
+        "other": "用户名已存在"
+      },
+      "failed_to_get_github_login_url": {
+        "other": "获取 GitHub 登录 URL 失败"
+      },
+      "failed_to_get_google_login_url": {
+        "other": "获取 Google 登录 URL 失败"
+      },
+      "failed_to_get_qq_login_url": {
+        "other": "获取 QQ 登录 URL 失败"
+      },
+      "failed_to_get_custom_login_url": {
+        "other": "获取自定义登录 URL 失败"
+      },
+      "oauth2_not_configured": {
+        "other": "OAuth2 未配置"
+      },
+      "oauth2_not_enabled": {
+        "other": "OAuth2 未启用"
+      },
+      "no_permission_binding_github": {
+        "other": "没有权限绑定 GitHub 账号"
+      },
+      "no_permission_binding_google": {
+        "other": "没有权限绑定 Google 账号"
+      },
+      "no_permission_binding_qq": {
+        "other": "没有权限绑定 QQ 账号"
+      },
+      "no_permission_binding_custom": {
+        "other": "没有权限绑定自定义 OAuth2 账号"
+      },
+      "todo_exceed_limit": {
+        "other": "待办事项数量已达上限"
+      },
+      "invalid_connection_url": {
+        "other": "connect url不能为空"
+      },
+      "connect_has_exists": {
+        "other": "connect 已经存在"
+      },
+      "no_such_comment_provider": {
+        "other": "无效的评论服务提供者"
+      },
+      "webhook_name_or_url_cannot_be_empty": {
+        "other": "未填写 Webhook 名称或 URL"
+      },
+      "invalid_cron_expression": {
+        "other": "无效的 Cron 表达式"
+      },
+      "snapshot_upload_failed": {
+        "other": "快照上传失败"
+      },
+      "snapshot_restore_failed": {
+        "other": "快照恢复失败"
+      },
+      "database_close_failed": {
+        "other": "数据库关闭失败"
+      },
+      "get_actor_error": {
+        "other": "获取 Actor 信息失败"
+      },
+      "activepub_not_enabled": {
+        "other": "ActivityPub 未启用"
+      },
+      "fediverse_invalid_input": {
+        "other": "无效的联邦参数"
+      },
+      "follow_relation_missing": {
+        "other": "未找到关注关系"
+      },
+      "agent_not_enabled": {
+        "other": "未启用 Agent "
+      },
+      "agent_provider_not_found": {
+        "other": "未找到对应的 Agent 提供商"
+      },
+      "agent_api_key_missing": {
+        "other": "未配置 Agent API Key 或 API Key 为空"
+      },
+      "agent_model_missing": {
+        "other": "未配置 Agent 模型名称或模型名称不能为空"
+      },
+      "agent_setting_not_found": {
+        "other": "未找到 Agent 设置"
+      }
+    }
+  },
+  "panic": {
+    "init_logger_panic": {
+      "other": "初始化 Logger 失败"
+    },
+    "read_config_panic": {
+      "other": "读取配置文件失败"
+    },
+    "create_db_path_panic": {
+      "other": "创建数据库路径失败"
+    },
+    "database_not_inited": {
+      "other": "数据库未初始化"
+    },
+    "init_database_panic": {
+      "other": "数据库初始化失败"
+    },
+    "migrate_db_panic": {
+      "other": "数据库迁移失败"
+    },
+    "init_handlers_panic": {
+      "other": "初始化 Handlers 失败"
+    },
+    "init_tasker_panic": {
+      "other": "初始化 Tasker 失败"
+    },
+    "init_event_registrar_panic": {
+      "other": "初始化 EventRegistrar 失败"
+    },
+    "gin_run_failed": {
+      "other": "启动 GIN 服务器失败"
+    }
+  }
+}
