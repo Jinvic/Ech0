@@ -14,4 +14,6 @@ func setupMiddleware(r *gin.Engine) {
 	r.Use(middleware.Cors())
 	// Global write guard middleware
 	r.Use(middleware.WriteGuard())
+	// I18n middleware
+	r.Use(middleware.I18n())
 }
