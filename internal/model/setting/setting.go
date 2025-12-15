@@ -19,6 +19,7 @@ type SystemSetting struct {
 	MetingAPI     string `json:"meting_api"`     // Meting API 地址
 	CustomCSS     string `json:"custom_css"`     // 自定义 CSS
 	CustomJS      string `json:"custom_js"`      // 自定义 JS
+	Language      string `json:"language"`       // 语言
 }
 
 // CommentSetting 定义评论设置实体

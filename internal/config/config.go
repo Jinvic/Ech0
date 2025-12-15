@@ -70,6 +70,7 @@ type AppConfig struct {
 		MetingAPI     string `yaml:"metingapi"`     // Meting API 地址
 		CustomCSS     string `yaml:"customcss"`     // 自定义 CSS 样式
 		CustomJS      string `yaml:"customjs"`      // 自定义 JS 脚本
+		Language      string `yaml:"language"`      // 语言
 	} `yaml:"setting"`
 	Comment struct {
 		EnableComment bool   `yaml:"enablecomment"` // 是否启用评论

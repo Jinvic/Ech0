@@ -4,6 +4,7 @@ import (
 	"embed"
 	"encoding/json"
 	"path"
+	"slices"
 	"strings"
 
 	"github.com/nicksnyder/go-i18n/v2/i18n"
@@ -15,17 +16,41 @@ var translationFS embed.FS
 
 var (
 	bundle             *i18n.Bundle
-	defaultLanguage    = language.English
-	supportedLanguages = []language.Tag{
-		language.English,
+	DefaultLanguage    = language.Chinese
+	SupportedLanguages = []language.Tag{
 		language.Chinese,
+		language.English,
 		// 添加其他支持的语言
 	}
+	LangMatcher = language.NewMatcher(SupportedLanguages)
 )
+
+// GetSupportedLanguage 获取支持的语言标签
+func GetSupportedLanguage(lang string) language.Tag {
+	if lang == "" {
+		return DefaultLanguage
+	}
+
+	tag, err := language.Parse(lang)
+	if err != nil {
+		return DefaultLanguage
+	}
+
+	matched, _, _ := LangMatcher.Match(tag)
+	return matched
+}
+
+// IsLanguageSupported 判断语言是否支持
+func IsLanguageSupported(lang string) bool {
+	tag := GetSupportedLanguage(lang)
+
+	// 检查匹配到的语言是否在支持列表中
+	return slices.Contains(SupportedLanguages, tag)
+}
 
 // 初始化 i18n bundle
 func Init() error {
-	bundle = i18n.NewBundle(defaultLanguage)
+	bundle = i18n.NewBundle(DefaultLanguage)
 	bundle.RegisterUnmarshalFunc("json", json.Unmarshal)
 
 	// 加载所有翻译文件
@@ -56,11 +81,11 @@ func Init() error {
 func NewLocalizer(lang string) *i18n.Localizer {
 	// 如果传入空字符串，使用默认语言
 	if lang == "" {
-		return i18n.NewLocalizer(bundle, defaultLanguage.String())
+		return i18n.NewLocalizer(bundle, DefaultLanguage.String())
 	}
 
 	// 创建包含回退语言的本地化器
-	return i18n.NewLocalizer(bundle, lang, defaultLanguage.String())
+	return i18n.NewLocalizer(bundle, lang, DefaultLanguage.String())
 }
 
 // T 是简化的翻译函数，用于没有参数的简单字符串

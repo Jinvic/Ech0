@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	res "github.com/lin-snow/ech0/internal/handler/response"
+	i18n "github.com/lin-snow/ech0/internal/i18n"
 	commonModel "github.com/lin-snow/ech0/internal/model/common"
 	model "github.com/lin-snow/ech0/internal/model/setting"
 	service "github.com/lin-snow/ech0/internal/service/setting"
@@ -72,6 +73,11 @@ func (settingHandler *SettingHandler) UpdateSettings() gin.HandlerFunc {
 				Msg: commonModel.INVALID_REQUEST_BODY,
 				Err: err,
 			}
+		}
+
+		// 如果语言不支持，则使用默认语言
+		if !i18n.IsLanguageSupported(newSettings.Language) {
+			newSettings.Language = i18n.DefaultLanguage.String()
 		}
 
 		if err := settingHandler.settingService.UpdateSetting(userid, &newSettings); err != nil {

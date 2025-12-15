@@ -42,6 +42,7 @@ setting:
   metingapi: ""
   customcss: ""
   customjs: ""
+  language: "zh"
 
 comment:
   enablecomment: false
