@@ -8,6 +8,7 @@ import (
 
 	"github.com/lin-snow/ech0/internal/config"
 	"github.com/lin-snow/ech0/internal/event"
+	i18n "github.com/lin-snow/ech0/internal/i18n"
 	authModel "github.com/lin-snow/ech0/internal/model/auth"
 	commonModel "github.com/lin-snow/ech0/internal/model/common"
 	model "github.com/lin-snow/ech0/internal/model/setting"
@@ -212,6 +213,15 @@ func (settingService *SettingService) UpdateCommentSetting(userid uint, newSetti
 
 		return nil
 	})
+}
+
+// GetLanguage 获取语言
+func (settingService *SettingService) GetLanguage() string {
+	var setting model.SystemSetting
+	if err := settingService.GetSetting(&setting); err != nil {
+		return i18n.DefaultLanguage.String()
+	}
+	return setting.Language
 }
 
 // GetS3Setting 获取 S3 存储设置
