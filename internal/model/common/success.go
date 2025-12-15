@@ -1,122 +1,136 @@
 package model
 
+import (
+	i18n "github.com/lin-snow/ech0/internal/i18n"
+)
+
 // SUCCESS_MESSAGE 成功相关的消息常量
 const (
-	SUCCESS_MESSAGE = "请求成功"
+	SUCCESS_MESSAGE = "success.success_message"
 )
 
 // Auth 成功相关常量
 const (
-	LOGIN_SUCCESS    = "登陆成功"
-	REGISTER_SUCCESS = "注册成功"
+	LOGIN_SUCCESS    = "success.login_success"
+	REGISTER_SUCCESS = "success.register_success"
 )
 
 // Echo 成功相关常量
 const (
-	POST_ECHO_SUCCESS           = "发布Echo成功！"
-	GET_ECHOS_BY_PAGE_SUCCESS   = "获取Echos成功！"
-	DELETE_ECHO_SUCCESS         = "删除Echo成功"
-	GET_TODAY_ECHOS_SUCCESS     = "获取当日Echos成功"
-	UPDATE_ECHO_SUCCESS         = "更新Echo成功"
-	LIKE_ECHO_SUCCESS           = "点赞Echo成功"
-	GET_ECHO_BY_ID_SUCCESS      = "获取Echo成功"
-	GET_ALL_TAGS_SUCCESS        = "获取所有标签成功"
-	DELETE_TAG_SUCCESS          = "删除标签成功"
-	GET_ECHOS_BY_TAG_ID_SUCCESS = "获取标签下的Echos成功"
+	POST_ECHO_SUCCESS           = "success.post_echo_success"
+	GET_ECHOS_BY_PAGE_SUCCESS   = "success.get_echos_by_page_success"
+	DELETE_ECHO_SUCCESS         = "success.delete_echo_success"
+	GET_TODAY_ECHOS_SUCCESS     = "success.get_today_echos_success"
+	UPDATE_ECHO_SUCCESS         = "success.update_echo_success"
+	LIKE_ECHO_SUCCESS           = "success.like_echo_success"
+	GET_ECHO_BY_ID_SUCCESS      = "success.get_echo_by_id_success"
+	GET_ALL_TAGS_SUCCESS        = "success.get_all_tags_success"
+	DELETE_TAG_SUCCESS          = "success.delete_tag_success"
+	GET_ECHOS_BY_TAG_ID_SUCCESS = "success.get_echos_by_tag_id_success"
 )
 
 // Common 成功相关常量
 const (
-	UPLOAD_SUCCESS             = "上传成功"
-	DELETE_SUCCESS             = "删除成功"
-	GET_STATUS_SUCCESS         = "获取状态成功"
-	GET_HEATMAP_SUCCESS        = "获取热力图成功"
-	GET_MUSIC_URL_SUCCESS      = "获取音乐播放链接成功"
-	GET_HELLO_SUCCESS          = "获取Hello成功"
-	GET_S3_PRESIGN_URL_SUCCESS = "获取 S3 预签名 URL 成功"
-	GET_METRICS_SUCCESS        = "获取系统指标成功"
-	GET_WEBSITE_TITLE_SUCCESS  = "获取网站标题成功"
+	UPLOAD_SUCCESS             = "success.upload_success"
+	DELETE_SUCCESS             = "success.delete_success"
+	GET_STATUS_SUCCESS         = "success.get_status_success"
+	GET_HEATMAP_SUCCESS        = "success.get_heatmap_success"
+	GET_MUSIC_URL_SUCCESS      = "success.get_music_url_success"
+	GET_HELLO_SUCCESS          = "success.get_hello_success"
+	GET_S3_PRESIGN_URL_SUCCESS = "success.get_s3_presign_url_success"
+	GET_METRICS_SUCCESS        = "success.get_metrics_success"
+	GET_WEBSITE_TITLE_SUCCESS  = "success.get_website_title_success"
 )
 
 // Inbox 成功相关常量
 const (
-	GET_INBOX_LIST_SUCCESS   = "获取收件箱成功"
-	GET_UNREAD_INBOX_SUCCESS = "获取未读消息成功"
-	MARK_INBOX_READ_SUCCESS  = "标记消息已读成功"
-	DELETE_INBOX_SUCCESS     = "删除收件箱消息成功"
-	CLEAR_INBOX_SUCCESS      = "清空收件箱成功"
+	GET_INBOX_LIST_SUCCESS   = "success.get_inbox_list_success"
+	GET_UNREAD_INBOX_SUCCESS = "success.get_unread_inbox_success"
+	MARK_INBOX_READ_SUCCESS  = "success.mark_inbox_read_success"
+	DELETE_INBOX_SUCCESS     = "success.delete_inbox_success"
+	CLEAR_INBOX_SUCCESS      = "success.clear_inbox_success"
 )
 
 // Setting 成功相关常量
 const (
-	GET_SETTINGS_SUCCESS              = "获取设置成功！"
-	UPDATE_SETTINGS_SUCCESS           = "更新设置成功！"
-	GET_COMMENT_SETTINGS_SUCCESS      = "获取评论设置成功！"
-	UPDATE_COMMENT_SETTINGS_SUCCESS   = "更新评论设置成功！"
-	GET_S3_SETTINGS_SUCCESS           = "获取 S3 存储设置成功！"
-	UPDATE_S3_SETTINGS_SUCCESS        = "更新 S3 存储设置成功！"
-	GET_OAUTH_SETTINGS_SUCCESS        = "获取 OAuth 设置成功！"
-	UPDATE_OAUTH_SETTINGS_SUCCESS     = "更新 OAuth 设置成功！"
-	GET_OAUTH2_STATUS_SUCCESS         = "获取 OAuth2 状态成功"
-	GET_WEBHOOK_SUCCESS               = "获取 Webhook 成功"
-	DELETE_WEBHOOK_SUCCESS            = "删除 Webhook 成功"
-	UPDATE_WEBHOOK_SUCCESS            = "更新 Webhook 成功"
-	CREATE_WEBHOOK_SUCCESS            = "创建 Webhook 成功"
-	LIST_ACCESS_TOKENS_SUCCESS        = "列出访问令牌成功"
-	CREATE_ACCESS_TOKEN_SUCCESS       = "创建访问令牌成功"
-	DELETE_ACCESS_TOKEN_SUCCESS       = "删除访问令牌成功"
-	GET_FEDIVERSE_SETTINGS_SUCCESS    = "获取联邦网络设置成功"
-	UPDATE_FEDIVERSE_SETTINGS_SUCCESS = "更新联邦网络设置成功"
-	SCHEDULE_BACKUP_SUCCESS           = "设置备份计划成功"
+	GET_SETTINGS_SUCCESS              = "success.get_settings_success"
+	UPDATE_SETTINGS_SUCCESS           = "success.update_settings_success"
+	GET_COMMENT_SETTINGS_SUCCESS      = "success.get_comment_settings_success"
+	UPDATE_COMMENT_SETTINGS_SUCCESS   = "success.update_comment_settings_success"
+	GET_S3_SETTINGS_SUCCESS           = "success.get_s3_settings_success"
+	UPDATE_S3_SETTINGS_SUCCESS        = "success.update_s3_settings_success"
+	GET_OAUTH_SETTINGS_SUCCESS        = "success.get_oauth_settings_success"
+	UPDATE_OAUTH_SETTINGS_SUCCESS     = "success.update_oauth_settings_success"
+	GET_OAUTH2_STATUS_SUCCESS         = "success.get_oauth2_status_success"
+	GET_WEBHOOK_SUCCESS               = "success.get_webhook_success"
+	DELETE_WEBHOOK_SUCCESS            = "success.delete_webhook_success"
+	UPDATE_WEBHOOK_SUCCESS            = "success.update_webhook_success"
+	CREATE_WEBHOOK_SUCCESS            = "success.create_webhook_success"
+	LIST_ACCESS_TOKENS_SUCCESS        = "success.list_access_tokens_success"
+	CREATE_ACCESS_TOKEN_SUCCESS       = "success.create_access_token_success"
+	DELETE_ACCESS_TOKEN_SUCCESS       = "success.delete_access_token_success"
+	GET_FEDIVERSE_SETTINGS_SUCCESS    = "success.get_fediverse_settings_success"
+	UPDATE_FEDIVERSE_SETTINGS_SUCCESS = "success.update_fediverse_settings_success"
+	SCHEDULE_BACKUP_SUCCESS           = "success.schedule_backup_success"
 )
 
 // To do 成功相关常量
 const (
-	GET_TODO_LIST_SUCCESS = "获取Todo list 成功"
-	ADD_TODO_SUCCESS      = "添加Todo成功"
-	UPDATE_TODO_SUCCESS   = "更新Todo成功"
-	DELETE_TODO_SUCCESS   = "删除Todo成功"
+	GET_TODO_LIST_SUCCESS = "success.get_todo_list_success"
+	ADD_TODO_SUCCESS      = "success.add_todo_success"
+	UPDATE_TODO_SUCCESS   = "success.update_todo_success"
+	DELETE_TODO_SUCCESS   = "success.delete_todo_success"
 )
 
 // User 成功相关常量
 const (
-	UPDATE_USER_SUCCESS       = "更新用户信息成功"
-	GET_USER_SUCCESS          = "获取用户列表成功"
-	GET_USER_INFO_SUCCESS     = "获取用户信息成功"
-	DELETE_USER_SUCCESS       = "删除用户成功"
-	BIND_GITHUB_SUCCESS       = "绑定 GitHub 账号成功"
-	GET_OAUTH_BINGURL_SUCCESS = "获取绑定 URL 成功"
-	GET_OAUTH_INFO_SUCCESS    = "获取 OAuth2 信息成功"
+	UPDATE_USER_SUCCESS       = "success.update_user_success"
+	GET_USER_SUCCESS          = "success.get_user_success"
+	GET_USER_INFO_SUCCESS     = "success.get_user_info_success"
+	DELETE_USER_SUCCESS       = "success.delete_user_success"
+	BIND_GITHUB_SUCCESS       = "success.bind_github_success"
+	GET_OAUTH_BINGURL_SUCCESS = "success.get_oauth_bingurl_success"
+	GET_OAUTH_INFO_SUCCESS    = "success.get_oauth_info_success"
 )
 
 // Connect 成功相关常量
 const (
-	CONNECT_SUCCESS            = "连接成功"
-	ADD_CONNECT_SUCCESS        = "添加连接成功"
-	DELETE_CONNECT_SUCCESS     = "连接已取消"
-	GET_CONNECT_INFO_SUCCESS   = "获取 Connect 信息成功"
-	GET_CONNECTED_LIST_SUCCESS = "获取连接列表成功"
+	CONNECT_SUCCESS            = "success.connect_success"
+	ADD_CONNECT_SUCCESS        = "success.add_connect_success"
+	DELETE_CONNECT_SUCCESS     = "success.delete_connect_success"
+	GET_CONNECT_INFO_SUCCESS   = "success.get_connect_info_success"
+	GET_CONNECTED_LIST_SUCCESS = "success.get_connected_list_success"
 )
 
 // Backup 成功相关常量
 const (
-	BACKUP_SUCCESS        = "备份成功"
-	EXPORT_BACKUP_SUCCESS = "导出备份成功"
-	IMPORT_BACKUP_SUCCESS = "导入备份成功"
+	BACKUP_SUCCESS        = "success.backup_success"
+	EXPORT_BACKUP_SUCCESS = "success.export_backup_success"
+	IMPORT_BACKUP_SUCCESS = "success.import_backup_success"
 )
 
 // Fediverse 成功相关常量
 const (
-	FEDIVERSE_SEARCH_ACTOR_SUCCESS      = "搜索 Actor 成功"
-	FEDIVERSE_FOLLOW_SUCCESS            = "关注请求已发送"
-	FEDIVERSE_UNFOLLOW_SUCCESS          = "取消关注请求已发送"
-	FEDIVERSE_LIKE_SUCCESS              = "点赞请求已发送"
-	FEDIVERSE_UNDO_LIKE_SUCCESS         = "取消点赞请求已发送"
-	FEDIVERSE_GET_FOLLOW_STATUS_SUCCESS = "获取关注状态成功"
-	FEDIVERSE_GET_TIMELINE_SUCCESS      = "获取时间线成功"
+	FEDIVERSE_SEARCH_ACTOR_SUCCESS      = "success.fediverse_search_actor_success"
+	FEDIVERSE_FOLLOW_SUCCESS            = "success.fediverse_follow_success"
+	FEDIVERSE_UNFOLLOW_SUCCESS          = "success.fediverse_unfollow_success"
+	FEDIVERSE_LIKE_SUCCESS              = "success.fediverse_like_success"
+	FEDIVERSE_UNDO_LIKE_SUCCESS         = "success.fediverse_undo_like_success"
+	FEDIVERSE_GET_FOLLOW_STATUS_SUCCESS = "success.fediverse_get_follow_status_success"
+	FEDIVERSE_GET_TIMELINE_SUCCESS      = "success.fediverse_get_timeline_success"
 )
 
 // Agent 成功相关常量
 const (
-	AGENT_GET_RECENT_SUCCESS = "获取近期活动总结成功"
+	AGENT_GET_RECENT_SUCCESS = "success.agent_get_recent_success"
 )
+
+// GetSuccessMessage 获取本地化成功消息
+func GetSuccessMessage(lang, messageID string) string {
+	return i18n.T(lang, messageID)
+}
+
+// GetSuccessMessageWithData 获取本地化成功消息，包含模板数据
+func GetSuccessMessageWithData(lang, messageID string, templateData map[string]any) string {
+	return i18n.TWithData(lang, messageID, templateData)
+}

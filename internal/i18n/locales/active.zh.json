@@ -1,177 +1,175 @@
 {
-  "server": {
-    "error": {
-      "invalid_file_path": {
-        "other": "无效的文件路径"
-      },
-      "invalid_request_body": {
-        "other": "无效的请求体"
-      },
-      "invalid_params_body": {
-        "other": "无效参数"
-      },
-      "invalid_query_params": {
-        "other": "无效的查询参数"
-      },
-      "invalid_request_method": {
-        "other": "无效的请求方法"
-      },
-      "no_file_upload_error": {
-        "other": "找不到上传的文件"
-      },
-      "no_file_storage_error": {
-        "other": "未知存储方式"
-      },
-      "file_type_not_allowed": {
-        "other": "不支持的文件类型"
-      },
-      "file_size_exceed_limit": {
-        "other": "文件大小超过限制"
-      },
-      "image_not_found": {
-        "other": "图片未找到"
-      },
-      "invalid_params": {
-        "other": "错误的参数"
-      },
-      "signup_first": {
-        "other": "请先注册用户"
-      },
-      "s3_not_enabled": {
-        "other": "S3存储未启用"
-      },
-      "s3_not_configured": {
-        "other": "S3存储未配置"
-      },
-      "s3_config_error": {
-        "other": "S3存储配置错误"
-      },
-      "no_permission_denied": {
-        "other": "没有权限,请联系系统管理员"
-      },
-      "echo_can_not_be_empty": {
-        "other": "ECHO 内容不能为空"
-      },
-      "echo_not_found": {
-        "other": "找不到Echo"
-      },
-      "username_or_password_not_be_empty": {
-        "other": "用户名或密码不能为空"
-      },
-      "password_incorrect": {
-        "other": "密码错误"
-      },
-      "user_notfound": {
-        "other": "用户不存在"
-      },
-      "user_count_exceed_limit": {
-        "other": "用户数量超过限制"
-      },
-      "username_has_exists": {
-        "other": "用户名已存在"
-      },
-      "token_not_found": {
-        "other": "未找到令牌,请点击右上角登录"
-      },
-      "token_not_valid": {
-        "other": "令牌无效，请重新登录"
-      },
-      "token_parse_error": {
-        "other": "令牌解析失败，请尝试重新登陆"
-      },
-      "user_register_not_allow": {
-        "other": "当前系统禁止注册新用户"
-      },
-      "inbox_not_found": {
-        "other": "收件箱消息不存在"
-      },
-      "username_already_exists": {
-        "other": "用户名已存在"
-      },
-      "failed_to_get_github_login_url": {
-        "other": "获取 GitHub 登录 URL 失败"
-      },
-      "failed_to_get_google_login_url": {
-        "other": "获取 Google 登录 URL 失败"
-      },
-      "failed_to_get_qq_login_url": {
-        "other": "获取 QQ 登录 URL 失败"
-      },
-      "failed_to_get_custom_login_url": {
-        "other": "获取自定义登录 URL 失败"
-      },
-      "oauth2_not_configured": {
-        "other": "OAuth2 未配置"
-      },
-      "oauth2_not_enabled": {
-        "other": "OAuth2 未启用"
-      },
-      "no_permission_binding_github": {
-        "other": "没有权限绑定 GitHub 账号"
-      },
-      "no_permission_binding_google": {
-        "other": "没有权限绑定 Google 账号"
-      },
-      "no_permission_binding_qq": {
-        "other": "没有权限绑定 QQ 账号"
-      },
-      "no_permission_binding_custom": {
-        "other": "没有权限绑定自定义 OAuth2 账号"
-      },
-      "todo_exceed_limit": {
-        "other": "待办事项数量已达上限"
-      },
-      "invalid_connection_url": {
-        "other": "connect url不能为空"
-      },
-      "connect_has_exists": {
-        "other": "connect 已经存在"
-      },
-      "no_such_comment_provider": {
-        "other": "无效的评论服务提供者"
-      },
-      "webhook_name_or_url_cannot_be_empty": {
-        "other": "未填写 Webhook 名称或 URL"
-      },
-      "invalid_cron_expression": {
-        "other": "无效的 Cron 表达式"
-      },
-      "snapshot_upload_failed": {
-        "other": "快照上传失败"
-      },
-      "snapshot_restore_failed": {
-        "other": "快照恢复失败"
-      },
-      "database_close_failed": {
-        "other": "数据库关闭失败"
-      },
-      "get_actor_error": {
-        "other": "获取 Actor 信息失败"
-      },
-      "activepub_not_enabled": {
-        "other": "ActivityPub 未启用"
-      },
-      "fediverse_invalid_input": {
-        "other": "无效的联邦参数"
-      },
-      "follow_relation_missing": {
-        "other": "未找到关注关系"
-      },
-      "agent_not_enabled": {
-        "other": "未启用 Agent "
-      },
-      "agent_provider_not_found": {
-        "other": "未找到对应的 Agent 提供商"
-      },
-      "agent_api_key_missing": {
-        "other": "未配置 Agent API Key 或 API Key 为空"
-      },
-      "agent_model_missing": {
-        "other": "未配置 Agent 模型名称或模型名称不能为空"
-      },
-      "agent_setting_not_found": {
-        "other": "未找到 Agent 设置"
-      }
+  "error": {
+    "invalid_file_path": {
+      "other": "无效的文件路径"
+    },
+    "invalid_request_body": {
+      "other": "无效的请求体"
+    },
+    "invalid_params_body": {
+      "other": "无效参数"
+    },
+    "invalid_query_params": {
+      "other": "无效的查询参数"
+    },
+    "invalid_request_method": {
+      "other": "无效的请求方法"
+    },
+    "no_file_upload_error": {
+      "other": "找不到上传的文件"
+    },
+    "no_file_storage_error": {
+      "other": "未知存储方式"
+    },
+    "file_type_not_allowed": {
+      "other": "不支持的文件类型"
+    },
+    "file_size_exceed_limit": {
+      "other": "文件大小超过限制"
+    },
+    "image_not_found": {
+      "other": "图片未找到"
+    },
+    "invalid_params": {
+      "other": "错误的参数"
+    },
+    "signup_first": {
+      "other": "请先注册用户"
+    },
+    "s3_not_enabled": {
+      "other": "S3存储未启用"
+    },
+    "s3_not_configured": {
+      "other": "S3存储未配置"
+    },
+    "s3_config_error": {
+      "other": "S3存储配置错误"
+    },
+    "no_permission_denied": {
+      "other": "没有权限,请联系系统管理员"
+    },
+    "echo_can_not_be_empty": {
+      "other": "ECHO 内容不能为空"
+    },
+    "echo_not_found": {
+      "other": "找不到Echo"
+    },
+    "username_or_password_not_be_empty": {
+      "other": "用户名或密码不能为空"
+    },
+    "password_incorrect": {
+      "other": "密码错误"
+    },
+    "user_notfound": {
+      "other": "用户不存在"
+    },
+    "user_count_exceed_limit": {
+      "other": "用户数量超过限制"
+    },
+    "username_has_exists": {
+      "other": "用户名已存在"
+    },
+    "token_not_found": {
+      "other": "未找到令牌,请点击右上角登录"
+    },
+    "token_not_valid": {
+      "other": "令牌无效，请重新登录"
+    },
+    "token_parse_error": {
+      "other": "令牌解析失败，请尝试重新登陆"
+    },
+    "user_register_not_allow": {
+      "other": "当前系统禁止注册新用户"
+    },
+    "inbox_not_found": {
+      "other": "收件箱消息不存在"
+    },
+    "username_already_exists": {
+      "other": "用户名已存在"
+    },
+    "failed_to_get_github_login_url": {
+      "other": "获取 GitHub 登录 URL 失败"
+    },
+    "failed_to_get_google_login_url": {
+      "other": "获取 Google 登录 URL 失败"
+    },
+    "failed_to_get_qq_login_url": {
+      "other": "获取 QQ 登录 URL 失败"
+    },
+    "failed_to_get_custom_login_url": {
+      "other": "获取自定义登录 URL 失败"
+    },
+    "oauth2_not_configured": {
+      "other": "OAuth2 未配置"
+    },
+    "oauth2_not_enabled": {
+      "other": "OAuth2 未启用"
+    },
+    "no_permission_binding_github": {
+      "other": "没有权限绑定 GitHub 账号"
+    },
+    "no_permission_binding_google": {
+      "other": "没有权限绑定 Google 账号"
+    },
+    "no_permission_binding_qq": {
+      "other": "没有权限绑定 QQ 账号"
+    },
+    "no_permission_binding_custom": {
+      "other": "没有权限绑定自定义 OAuth2 账号"
+    },
+    "todo_exceed_limit": {
+      "other": "待办事项数量已达上限"
+    },
+    "invalid_connection_url": {
+      "other": "connect url不能为空"
+    },
+    "connect_has_exists": {
+      "other": "connect 已经存在"
+    },
+    "no_such_comment_provider": {
+      "other": "无效的评论服务提供者"
+    },
+    "webhook_name_or_url_cannot_be_empty": {
+      "other": "未填写 Webhook 名称或 URL"
+    },
+    "invalid_cron_expression": {
+      "other": "无效的 Cron 表达式"
+    },
+    "snapshot_upload_failed": {
+      "other": "快照上传失败"
+    },
+    "snapshot_restore_failed": {
+      "other": "快照恢复失败"
+    },
+    "database_close_failed": {
+      "other": "数据库关闭失败"
+    },
+    "get_actor_error": {
+      "other": "获取 Actor 信息失败"
+    },
+    "activepub_not_enabled": {
+      "other": "ActivityPub 未启用"
+    },
+    "fediverse_invalid_input": {
+      "other": "无效的联邦参数"
+    },
+    "follow_relation_missing": {
+      "other": "未找到关注关系"
+    },
+    "agent_not_enabled": {
+      "other": "未启用 Agent "
+    },
+    "agent_provider_not_found": {
+      "other": "未找到对应的 Agent 提供商"
+    },
+    "agent_api_key_missing": {
+      "other": "未配置 Agent API Key 或 API Key 为空"
+    },
+    "agent_model_missing": {
+      "other": "未配置 Agent 模型名称或模型名称不能为空"
+    },
+    "agent_setting_not_found": {
+      "other": "未找到 Agent 设置"
     }
   },
   "panic": {
@@ -204,6 +202,227 @@
     },
     "gin_run_failed": {
       "other": "启动 GIN 服务器失败"
+    }
+  },
+  "success": {
+    "success_message": {
+      "other": "请求成功"
+    },
+    "login_success": {
+      "other": "登陆成功"
+    },
+    "register_success": {
+      "other": "注册成功"
+    },
+    "post_echo_success": {
+      "other": "发布Echo成功！"
+    },
+    "get_echos_by_page_success": {
+      "other": "获取Echos成功！"
+    },
+    "delete_echo_success": {
+      "other": "删除Echo成功"
+    },
+    "get_today_echos_success": {
+      "other": "获取当日Echos成功"
+    },
+    "update_echo_success": {
+      "other": "更新Echo成功"
+    },
+    "like_echo_success": {
+      "other": "点赞Echo成功"
+    },
+    "get_echo_by_id_success": {
+      "other": "获取Echo成功"
+    },
+    "get_all_tags_success": {
+      "other": "获取所有标签成功"
+    },
+    "delete_tag_success": {
+      "other": "删除标签成功"
+    },
+    "get_echos_by_tag_id_success": {
+      "other": "获取标签下的Echos成功"
+    },
+    "upload_success": {
+      "other": "上传成功"
+    },
+    "delete_success": {
+      "other": "删除成功"
+    },
+    "get_status_success": {
+      "other": "获取状态成功"
+    },
+    "get_heatmap_success": {
+      "other": "获取热力图成功"
+    },
+    "get_music_url_success": {
+      "other": "获取音乐播放链接成功"
+    },
+    "get_hello_success": {
+      "other": "获取Hello成功"
+    },
+    "get_s3_presign_url_success": {
+      "other": "获取 S3 预签名 URL 成功"
+    },
+    "get_metrics_success": {
+      "other": "获取系统指标成功"
+    },
+    "get_website_title_success": {
+      "other": "获取网站标题成功"
+    },
+    "get_inbox_list_success": {
+      "other": "获取收件箱成功"
+    },
+    "get_unread_inbox_success": {
+      "other": "获取未读消息成功"
+    },
+    "mark_inbox_read_success": {
+      "other": "标记消息已读成功"
+    },
+    "delete_inbox_success": {
+      "other": "删除收件箱消息成功"
+    },
+    "clear_inbox_success": {
+      "other": "清空收件箱成功"
+    },
+    "get_settings_success": {
+      "other": "获取设置成功！"
+    },
+    "update_settings_success": {
+      "other": "更新设置成功！"
+    },
+    "get_comment_settings_success": {
+      "other": "获取评论设置成功！"
+    },
+    "update_comment_settings_success": {
+      "other": "更新评论设置成功！"
+    },
+    "get_s3_settings_success": {
+      "other": "获取 S3 存储设置成功！"
+    },
+    "update_s3_settings_success": {
+      "other": "更新 S3 存储设置成功！"
+    },
+    "get_oauth_settings_success": {
+      "other": "获取 OAuth 设置成功！"
+    },
+    "update_oauth_settings_success": {
+      "other": "更新 OAuth 设置成功！"
+    },
+    "get_oauth2_status_success": {
+      "other": "获取 OAuth2 状态成功"
+    },
+    "get_webhook_success": {
+      "other": "获取 Webhook 成功"
+    },
+    "delete_webhook_success": {
+      "other": "删除 Webhook 成功"
+    },
+    "update_webhook_success": {
+      "other": "更新 Webhook 成功"
+    },
+    "create_webhook_success": {
+      "other": "创建 Webhook 成功"
+    },
+    "list_access_tokens_success": {
+      "other": "列出访问令牌成功"
+    },
+    "create_access_token_success": {
+      "other": "创建访问令牌成功"
+    },
+    "delete_access_token_success": {
+      "other": "删除访问令牌成功"
+    },
+    "get_fediverse_settings_success": {
+      "other": "获取联邦网络设置成功"
+    },
+    "update_fediverse_settings_success": {
+      "other": "更新联邦网络设置成功"
+    },
+    "schedule_backup_success": {
+      "other": "设置备份计划成功"
+    },
+    "get_todo_list_success": {
+      "other": "获取Todo list 成功"
+    },
+    "add_todo_success": {
+      "other": "添加Todo成功"
+    },
+    "update_todo_success": {
+      "other": "更新Todo成功"
+    },
+    "delete_todo_success": {
+      "other": "删除Todo成功"
+    },
+    "update_user_success": {
+      "other": "更新用户信息成功"
+    },
+    "get_user_success": {
+      "other": "获取用户列表成功"
+    },
+    "get_user_info_success": {
+      "other": "获取用户信息成功"
+    },
+    "delete_user_success": {
+      "other": "删除用户成功"
+    },
+    "bind_github_success": {
+      "other": "绑定 GitHub 账号成功"
+    },
+    "get_oauth_bingurl_success": {
+      "other": "获取绑定 URL 成功"
+    },
+    "get_oauth_info_success": {
+      "other": "获取 OAuth2 信息成功"
+    },
+    "connect_success": {
+      "other": "连接成功"
+    },
+    "add_connect_success": {
+      "other": "添加连接成功"
+    },
+    "delete_connect_success": {
+      "other": "连接已取消"
+    },
+    "get_connect_info_success": {
+      "other": "获取 Connect 信息成功"
+    },
+    "get_connected_list_success": {
+      "other": "获取连接列表成功"
+    },
+    "backup_success": {
+      "other": "备份成功"
+    },
+    "export_backup_success": {
+      "other": "导出备份成功"
+    },
+    "import_backup_success": {
+      "other": "导入备份成功"
+    },
+    "fediverse_search_actor_success": {
+      "other": "搜索 Actor 成功"
+    },
+    "fediverse_follow_success": {
+      "other": "关注请求已发送"
+    },
+    "fediverse_unfollow_success": {
+      "other": "取消关注请求已发送"
+    },
+    "fediverse_like_success": {
+      "other": "点赞请求已发送"
+    },
+    "fediverse_undo_like_success": {
+      "other": "取消点赞请求已发送"
+    },
+    "fediverse_get_follow_status_success": {
+      "other": "获取关注状态成功"
+    },
+    "fediverse_get_timeline_success": {
+      "other": "获取时间线成功"
+    },
+    "agent_get_recent_success": {
+      "other": "获取近期活动总结成功"
     }
   }
 }

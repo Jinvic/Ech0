@@ -1,177 +1,175 @@
 {
-  "server": {
-    "error": {
-      "invalid_file_path": {
-        "other": "Invalid file path"
-      },
-      "invalid_request_body": {
-        "other": "Invalid request body"
-      },
-      "invalid_params_body": {
-        "other": "Invalid parameters"
-      },
-      "invalid_query_params": {
-        "other": "Invalid query parameters"
-      },
-      "invalid_request_method": {
-        "other": "Invalid request method"
-      },
-      "no_file_upload_error": {
-        "other": "Uploaded file not found"
-      },
-      "no_file_storage_error": {
-        "other": "Unknown storage method"
-      },
-      "file_type_not_allowed": {
-        "other": "Unsupported file type"
-      },
-      "file_size_exceed_limit": {
-        "other": "File size exceeds limit"
-      },
-      "image_not_found": {
-        "other": "Image not found"
-      },
-      "invalid_params": {
-        "other": "Incorrect parameters"
-      },
-      "signup_first": {
-        "other": "Please register first"
-      },
-      "s3_not_enabled": {
-        "other": "S3 storage not enabled"
-      },
-      "s3_not_configured": {
-        "other": "S3 storage not configured"
-      },
-      "s3_config_error": {
-        "other": "S3 storage configuration error"
-      },
-      "no_permission_denied": {
-        "other": "No permission, please contact system administrator"
-      },
-      "echo_can_not_be_empty": {
-        "other": "ECHO content cannot be empty"
-      },
-      "echo_not_found": {
-        "other": "Echo not found"
-      },
-      "username_or_password_not_be_empty": {
-        "other": "Username or password cannot be empty"
-      },
-      "password_incorrect": {
-        "other": "Password incorrect"
-      },
-      "user_notfound": {
-        "other": "User does not exist"
-      },
-      "user_count_exceed_limit": {
-        "other": "Number of users exceeds limit"
-      },
-      "username_has_exists": {
-        "other": "Username already exists"
-      },
-      "token_not_found": {
-        "other": "Token not found, please click login in top right corner"
-      },
-      "token_not_valid": {
-        "other": "Invalid token, please log in again"
-      },
-      "token_parse_error": {
-        "other": "Token parsing failed, please try logging in again"
-      },
-      "user_register_not_allow": {
-        "other": "Current system does not allow registering new users"
-      },
-      "inbox_not_found": {
-        "other": "Inbox message does not exist"
-      },
-      "username_already_exists": {
-        "other": "Username already exists"
-      },
-      "failed_to_get_github_login_url": {
-        "other": "Failed to get GitHub login URL"
-      },
-      "failed_to_get_google_login_url": {
-        "other": "Failed to get Google login URL"
-      },
-      "failed_to_get_qq_login_url": {
-        "other": "Failed to get QQ login URL"
-      },
-      "failed_to_get_custom_login_url": {
-        "other": "Failed to get custom login URL"
-      },
-      "oauth2_not_configured": {
-        "other": "OAuth2 not configured"
-      },
-      "oauth2_not_enabled": {
-        "other": "OAuth2 not enabled"
-      },
-      "no_permission_binding_github": {
-        "other": "No permission to bind GitHub account"
-      },
-      "no_permission_binding_google": {
-        "other": "No permission to bind Google account"
-      },
-      "no_permission_binding_qq": {
-        "other": "No permission to bind QQ account"
-      },
-      "no_permission_binding_custom": {
-        "other": "No permission to bind custom OAuth2 account"
-      },
-      "todo_exceed_limit": {
-        "other": "Number of to-do items has reached the limit"
-      },
-      "invalid_connection_url": {
-        "other": "Connect URL cannot be empty"
-      },
-      "connect_has_exists": {
-        "other": "Connect already exists"
-      },
-      "no_such_comment_provider": {
-        "other": "Invalid comment service provider"
-      },
-      "webhook_name_or_url_cannot_be_empty": {
-        "other": "Webhook name or URL not filled"
-      },
-      "invalid_cron_expression": {
-        "other": "Invalid Cron expression"
-      },
-      "snapshot_upload_failed": {
-        "other": "Snapshot upload failed"
-      },
-      "snapshot_restore_failed": {
-        "other": "Snapshot restore failed"
-      },
-      "database_close_failed": {
-        "other": "Database close failed"
-      },
-      "get_actor_error": {
-        "other": "Failed to get Actor info"
-      },
-      "activepub_not_enabled": {
-        "other": "ActivityPub not enabled"
-      },
-      "fediverse_invalid_input": {
-        "other": "Invalid fediverse parameters"
-      },
-      "follow_relation_missing": {
-        "other": "Follow relationship not found"
-      },
-      "agent_not_enabled": {
-        "other": "Agent not enabled"
-      },
-      "agent_provider_not_found": {
-        "other": "No corresponding Agent provider found"
-      },
-      "agent_api_key_missing": {
-        "other": "Agent API Key not configured or API Key is empty"
-      },
-      "agent_model_missing": {
-        "other": "Agent model name not configured or model name cannot be empty"
-      },
-      "agent_setting_not_found": {
-        "other": "Agent setting not found"
-      }
+  "error": {
+    "invalid_file_path": {
+      "other": "Invalid file path"
+    },
+    "invalid_request_body": {
+      "other": "Invalid request body"
+    },
+    "invalid_params_body": {
+      "other": "Invalid parameters"
+    },
+    "invalid_query_params": {
+      "other": "Invalid query parameters"
+    },
+    "invalid_request_method": {
+      "other": "Invalid request method"
+    },
+    "no_file_upload_error": {
+      "other": "Uploaded file not found"
+    },
+    "no_file_storage_error": {
+      "other": "Unknown storage method"
+    },
+    "file_type_not_allowed": {
+      "other": "Unsupported file type"
+    },
+    "file_size_exceed_limit": {
+      "other": "File size exceeds limit"
+    },
+    "image_not_found": {
+      "other": "Image not found"
+    },
+    "invalid_params": {
+      "other": "Incorrect parameters"
+    },
+    "signup_first": {
+      "other": "Please register first"
+    },
+    "s3_not_enabled": {
+      "other": "S3 storage not enabled"
+    },
+    "s3_not_configured": {
+      "other": "S3 storage not configured"
+    },
+    "s3_config_error": {
+      "other": "S3 storage configuration error"
+    },
+    "no_permission_denied": {
+      "other": "No permission, please contact system administrator"
+    },
+    "echo_can_not_be_empty": {
+      "other": "ECHO content cannot be empty"
+    },
+    "echo_not_found": {
+      "other": "Echo not found"
+    },
+    "username_or_password_not_be_empty": {
+      "other": "Username or password cannot be empty"
+    },
+    "password_incorrect": {
+      "other": "Password incorrect"
+    },
+    "user_notfound": {
+      "other": "User does not exist"
+    },
+    "user_count_exceed_limit": {
+      "other": "Number of users exceeds limit"
+    },
+    "username_has_exists": {
+      "other": "Username already exists"
+    },
+    "token_not_found": {
+      "other": "Token not found, please click login in top right corner"
+    },
+    "token_not_valid": {
+      "other": "Invalid token, please log in again"
+    },
+    "token_parse_error": {
+      "other": "Token parsing failed, please try logging in again"
+    },
+    "user_register_not_allow": {
+      "other": "Current system does not allow registering new users"
+    },
+    "inbox_not_found": {
+      "other": "Inbox message does not exist"
+    },
+    "username_already_exists": {
+      "other": "Username already exists"
+    },
+    "failed_to_get_github_login_url": {
+      "other": "Failed to get GitHub login URL"
+    },
+    "failed_to_get_google_login_url": {
+      "other": "Failed to get Google login URL"
+    },
+    "failed_to_get_qq_login_url": {
+      "other": "Failed to get QQ login URL"
+    },
+    "failed_to_get_custom_login_url": {
+      "other": "Failed to get custom login URL"
+    },
+    "oauth2_not_configured": {
+      "other": "OAuth2 not configured"
+    },
+    "oauth2_not_enabled": {
+      "other": "OAuth2 not enabled"
+    },
+    "no_permission_binding_github": {
+      "other": "No permission to bind GitHub account"
+    },
+    "no_permission_binding_google": {
+      "other": "No permission to bind Google account"
+    },
+    "no_permission_binding_qq": {
+      "other": "No permission to bind QQ account"
+    },
+    "no_permission_binding_custom": {
+      "other": "No permission to bind custom OAuth2 account"
+    },
+    "todo_exceed_limit": {
+      "other": "Number of to-do items has reached the limit"
+    },
+    "invalid_connection_url": {
+      "other": "Connect URL cannot be empty"
+    },
+    "connect_has_exists": {
+      "other": "Connect already exists"
+    },
+    "no_such_comment_provider": {
+      "other": "Invalid comment service provider"
+    },
+    "webhook_name_or_url_cannot_be_empty": {
+      "other": "Webhook name or URL not filled"
+    },
+    "invalid_cron_expression": {
+      "other": "Invalid Cron expression"
+    },
+    "snapshot_upload_failed": {
+      "other": "Snapshot upload failed"
+    },
+    "snapshot_restore_failed": {
+      "other": "Snapshot restore failed"
+    },
+    "database_close_failed": {
+      "other": "Database close failed"
+    },
+    "get_actor_error": {
+      "other": "Failed to get Actor info"
+    },
+    "activepub_not_enabled": {
+      "other": "ActivityPub not enabled"
+    },
+    "fediverse_invalid_input": {
+      "other": "Invalid fediverse parameters"
+    },
+    "follow_relation_missing": {
+      "other": "Follow relationship not found"
+    },
+    "agent_not_enabled": {
+      "other": "Agent not enabled"
+    },
+    "agent_provider_not_found": {
+      "other": "No corresponding Agent provider found"
+    },
+    "agent_api_key_missing": {
+      "other": "Agent API Key not configured or API Key is empty"
+    },
+    "agent_model_missing": {
+      "other": "Agent model name not configured or model name cannot be empty"
+    },
+    "agent_setting_not_found": {
+      "other": "Agent setting not found"
     }
   },
   "panic": {
@@ -204,6 +202,227 @@
     },
     "gin_run_failed": {
       "other": "Failed to start GIN server"
+    }
+  },
+  "success": {
+    "success_message": {
+      "other": "Request successful"
+    },
+    "login_success": {
+      "other": "Login successful"
+    },
+    "register_success": {
+      "other": "Registration successful"
+    },
+    "post_echo_success": {
+      "other": "Echo posted successfully!"
+    },
+    "get_echos_by_page_success": {
+      "other": "Echos retrieved successfully!"
+    },
+    "delete_echo_success": {
+      "other": "Echo deleted successfully"
+    },
+    "get_today_echos_success": {
+      "other": "Today's echos retrieved successfully"
+    },
+    "update_echo_success": {
+      "other": "Echo updated successfully"
+    },
+    "like_echo_success": {
+      "other": "Echo liked successfully"
+    },
+    "get_echo_by_id_success": {
+      "other": "Echo retrieved successfully"
+    },
+    "get_all_tags_success": {
+      "other": "All tags retrieved successfully"
+    },
+    "delete_tag_success": {
+      "other": "Tag deleted successfully"
+    },
+    "get_echos_by_tag_id_success": {
+      "other": "Echos by tag retrieved successfully"
+    },
+    "upload_success": {
+      "other": "Upload successful"
+    },
+    "delete_success": {
+      "other": "Deletion successful"
+    },
+    "get_status_success": {
+      "other": "Status retrieved successfully"
+    },
+    "get_heatmap_success": {
+      "other": "Heatmap retrieved successfully"
+    },
+    "get_music_url_success": {
+      "other": "Music URL retrieved successfully"
+    },
+    "get_hello_success": {
+      "other": "Hello retrieved successfully"
+    },
+    "get_s3_presign_url_success": {
+      "other": "S3 presigned URL retrieved successfully"
+    },
+    "get_metrics_success": {
+      "other": "System metrics retrieved successfully"
+    },
+    "get_website_title_success": {
+      "other": "Website title retrieved successfully"
+    },
+    "get_inbox_list_success": {
+      "other": "Inbox retrieved successfully"
+    },
+    "get_unread_inbox_success": {
+      "other": "Unread messages retrieved successfully"
+    },
+    "mark_inbox_read_success": {
+      "other": "Message marked as read successfully"
+    },
+    "delete_inbox_success": {
+      "other": "Inbox message deleted successfully"
+    },
+    "clear_inbox_success": {
+      "other": "Inbox cleared successfully"
+    },
+    "get_settings_success": {
+      "other": "Settings retrieved successfully!"
+    },
+    "update_settings_success": {
+      "other": "Settings updated successfully!"
+    },
+    "get_comment_settings_success": {
+      "other": "Comment settings retrieved successfully!"
+    },
+    "update_comment_settings_success": {
+      "other": "Comment settings updated successfully!"
+    },
+    "get_s3_settings_success": {
+      "other": "S3 storage settings retrieved successfully!"
+    },
+    "update_s3_settings_success": {
+      "other": "S3 storage settings updated successfully!"
+    },
+    "get_oauth_settings_success": {
+      "other": "OAuth settings retrieved successfully!"
+    },
+    "update_oauth_settings_success": {
+      "other": "OAuth settings updated successfully!"
+    },
+    "get_oauth2_status_success": {
+      "other": "OAuth2 status retrieved successfully"
+    },
+    "get_webhook_success": {
+      "other": "Webhook retrieved successfully"
+    },
+    "delete_webhook_success": {
+      "other": "Webhook deleted successfully"
+    },
+    "update_webhook_success": {
+      "other": "Webhook updated successfully"
+    },
+    "create_webhook_success": {
+      "other": "Webhook created successfully"
+    },
+    "list_access_tokens_success": {
+      "other": "Access tokens listed successfully"
+    },
+    "create_access_token_success": {
+      "other": "Access token created successfully"
+    },
+    "delete_access_token_success": {
+      "other": "Access token deleted successfully"
+    },
+    "get_fediverse_settings_success": {
+      "other": "Fediverse settings retrieved successfully"
+    },
+    "update_fediverse_settings_success": {
+      "other": "Fediverse settings updated successfully"
+    },
+    "schedule_backup_success": {
+      "other": "Backup schedule set successfully"
+    },
+    "get_todo_list_success": {
+      "other": "Todo list retrieved successfully"
+    },
+    "add_todo_success": {
+      "other": "Todo added successfully"
+    },
+    "update_todo_success": {
+      "other": "Todo updated successfully"
+    },
+    "delete_todo_success": {
+      "other": "Todo deleted successfully"
+    },
+    "update_user_success": {
+      "other": "User information updated successfully"
+    },
+    "get_user_success": {
+      "other": "User list retrieved successfully"
+    },
+    "get_user_info_success": {
+      "other": "User information retrieved successfully"
+    },
+    "delete_user_success": {
+      "other": "User deleted successfully"
+    },
+    "bind_github_success": {
+      "other": "GitHub account bound successfully"
+    },
+    "get_oauth_bingurl_success": {
+      "other": "Binding URL retrieved successfully"
+    },
+    "get_oauth_info_success": {
+      "other": "OAuth2 information retrieved successfully"
+    },
+    "connect_success": {
+      "other": "Connection successful"
+    },
+    "add_connect_success": {
+      "other": "Connection added successfully"
+    },
+    "delete_connect_success": {
+      "other": "Connection cancelled successfully"
+    },
+    "get_connect_info_success": {
+      "other": "Connect information retrieved successfully"
+    },
+    "get_connected_list_success": {
+      "other": "Connection list retrieved successfully"
+    },
+    "backup_success": {
+      "other": "Backup successful"
+    },
+    "export_backup_success": {
+      "other": "Backup exported successfully"
+    },
+    "import_backup_success": {
+      "other": "Backup imported successfully"
+    },
+    "fediverse_search_actor_success": {
+      "other": "Actor searched successfully"
+    },
+    "fediverse_follow_success": {
+      "other": "Follow request sent successfully"
+    },
+    "fediverse_unfollow_success": {
+      "other": "Unfollow request sent successfully"
+    },
+    "fediverse_like_success": {
+      "other": "Like request sent successfully"
+    },
+    "fediverse_undo_like_success": {
+      "other": "Unlike request sent successfully"
+    },
+    "fediverse_get_follow_status_success": {
+      "other": "Follow status retrieved successfully"
+    },
+    "fediverse_get_timeline_success": {
+      "other": "Timeline retrieved successfully"
+    },
+    "agent_get_recent_success": {
+      "other": "Recent activity summary retrieved successfully"
     }
   }
 }

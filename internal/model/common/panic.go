@@ -1,5 +1,7 @@
 package model
 
+import i18n "github.com/lin-snow/ech0/internal/i18n"
+
 // Panic Constants
 const (
 	INIT_LOGGER_PANIC          = "panic.init_logger_panic"
@@ -13,3 +15,8 @@ const (
 	INIT_EVENT_REGISTRAR_PANIC = "panic.init_event_registrar_panic"
 	GIN_RUN_FAILED             = "panic.gin_run_failed"
 )
+
+// GetPanicMessage 获取本地化panic消息
+func GetPanicMessage(lang, messageID string) string {
+	return i18n.T(lang, messageID)
+}

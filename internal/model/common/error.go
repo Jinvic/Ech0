@@ -1,5 +1,7 @@
 package model
 
+import i18n "github.com/lin-snow/ech0/internal/i18n"
+
 // ServerError 定义服务器错误信息
 type ServerError struct {
 	Msg string
@@ -110,3 +112,8 @@ const (
 	AGENT_MODEL_MISSING      = "error.agent_model_missing"
 	AGENT_SETTING_NOT_FOUND  = "error.agent_setting_not_found"
 )
+
+// GetErrorMessage 获取本地化错误消息
+func GetErrorMessage(lang, messageID string) string {
+	return i18n.T(lang, messageID)
+}
