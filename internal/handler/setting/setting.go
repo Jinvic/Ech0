@@ -35,6 +35,7 @@ func NewSettingHandler(settingService service.SettingServiceInterface) *SettingH
 // @Router /settings [get]
 func (settingHandler *SettingHandler) GetSettings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		var settings model.SystemSetting
 		if err := settingHandler.settingService.GetSetting(&settings); err != nil {
 			return res.Response{
@@ -45,7 +46,7 @@ func (settingHandler *SettingHandler) GetSettings() gin.HandlerFunc {
 
 		return res.Response{
 			Data: settings,
-			Msg:  commonModel.GET_SETTINGS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -63,6 +64,7 @@ func (settingHandler *SettingHandler) GetSettings() gin.HandlerFunc {
 // @Router /settings [put]
 func (settingHandler *SettingHandler) UpdateSettings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -70,7 +72,7 @@ func (settingHandler *SettingHandler) UpdateSettings() gin.HandlerFunc {
 		var newSettings model.SystemSettingDto
 		if err := ctx.ShouldBindJSON(&newSettings); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -88,7 +90,7 @@ func (settingHandler *SettingHandler) UpdateSettings() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_SETTINGS_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -105,6 +107,7 @@ func (settingHandler *SettingHandler) UpdateSettings() gin.HandlerFunc {
 // @Router /comment/settings [get]
 func (settingHandler *SettingHandler) GetCommentSettings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		var commentSetting model.CommentSetting
 		if err := settingHandler.settingService.GetCommentSetting(&commentSetting); err != nil {
 			return res.Response{
@@ -115,7 +118,7 @@ func (settingHandler *SettingHandler) GetCommentSettings() gin.HandlerFunc {
 
 		return res.Response{
 			Data: commentSetting,
-			Msg:  commonModel.GET_COMMENT_SETTINGS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_COMMENT_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -133,6 +136,7 @@ func (settingHandler *SettingHandler) GetCommentSettings() gin.HandlerFunc {
 // @Router /comment/settings [put]
 func (settingHandler *SettingHandler) UpdateCommentSettings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -140,7 +144,7 @@ func (settingHandler *SettingHandler) UpdateCommentSettings() gin.HandlerFunc {
 		var newCommentSettings model.CommentSettingDto
 		if err := ctx.ShouldBindJSON(&newCommentSettings); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -153,7 +157,7 @@ func (settingHandler *SettingHandler) UpdateCommentSettings() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_COMMENT_SETTINGS_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_COMMENT_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -170,6 +174,7 @@ func (settingHandler *SettingHandler) UpdateCommentSettings() gin.HandlerFunc {
 // @Router /s3/settings [get]
 func (settingHandler *SettingHandler) GetS3Settings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -183,7 +188,7 @@ func (settingHandler *SettingHandler) GetS3Settings() gin.HandlerFunc {
 
 		return res.Response{
 			Data: s3Setting,
-			Msg:  commonModel.GET_S3_SETTINGS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_S3_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -201,6 +206,7 @@ func (settingHandler *SettingHandler) GetS3Settings() gin.HandlerFunc {
 // @Router /s3/settings [put]
 func (settingHandler *SettingHandler) UpdateS3Settings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -208,7 +214,7 @@ func (settingHandler *SettingHandler) UpdateS3Settings() gin.HandlerFunc {
 		var newS3Settings model.S3SettingDto
 		if err := ctx.ShouldBindJSON(&newS3Settings); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -221,7 +227,7 @@ func (settingHandler *SettingHandler) UpdateS3Settings() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_S3_SETTINGS_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_S3_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -238,6 +244,7 @@ func (settingHandler *SettingHandler) UpdateS3Settings() gin.HandlerFunc {
 // @Router /oauth2/settings [get]
 func (settingHandler *SettingHandler) GetOAuth2Settings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -251,7 +258,7 @@ func (settingHandler *SettingHandler) GetOAuth2Settings() gin.HandlerFunc {
 
 		return res.Response{
 			Data: oauthSetting,
-			Msg:  commonModel.GET_OAUTH_SETTINGS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_OAUTH_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -269,6 +276,7 @@ func (settingHandler *SettingHandler) GetOAuth2Settings() gin.HandlerFunc {
 // @Router /oauth2/settings [put]
 func (settingHandler *SettingHandler) UpdateOAuth2Settings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -276,7 +284,7 @@ func (settingHandler *SettingHandler) UpdateOAuth2Settings() gin.HandlerFunc {
 		var newOAuthSettings model.OAuth2SettingDto
 		if err := ctx.ShouldBindJSON(&newOAuthSettings); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -289,7 +297,7 @@ func (settingHandler *SettingHandler) UpdateOAuth2Settings() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_OAUTH_SETTINGS_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_OAUTH_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -306,6 +314,7 @@ func (settingHandler *SettingHandler) UpdateOAuth2Settings() gin.HandlerFunc {
 // @Router /oauth2/status [get]
 func (settingHandler *SettingHandler) GetOAuth2Status() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		var status model.OAuth2Status
 		if err := settingHandler.settingService.GetOAuth2Status(&status); err != nil {
 			return res.Response{
@@ -316,7 +325,7 @@ func (settingHandler *SettingHandler) GetOAuth2Status() gin.HandlerFunc {
 
 		return res.Response{
 			Data: status,
-			Msg:  commonModel.GET_OAUTH2_STATUS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_OAUTH2_STATUS_SUCCESS),
 		}
 	})
 }
@@ -333,6 +342,7 @@ func (settingHandler *SettingHandler) GetOAuth2Status() gin.HandlerFunc {
 // @Router /webhook [get]
 func (settingHandler *SettingHandler) GetWebhook() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -346,7 +356,7 @@ func (settingHandler *SettingHandler) GetWebhook() gin.HandlerFunc {
 
 		return res.Response{
 			Data: result,
-			Msg:  commonModel.GET_WEBHOOK_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_WEBHOOK_SUCCESS),
 		}
 	})
 }
@@ -364,6 +374,7 @@ func (settingHandler *SettingHandler) GetWebhook() gin.HandlerFunc {
 // @Router /webhook/{id} [delete]
 func (settingHandler *SettingHandler) DeleteWebhook() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -372,7 +383,7 @@ func (settingHandler *SettingHandler) DeleteWebhook() gin.HandlerFunc {
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 			}
 		}
 
@@ -384,7 +395,7 @@ func (settingHandler *SettingHandler) DeleteWebhook() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.DELETE_WEBHOOK_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_WEBHOOK_SUCCESS),
 		}
 	})
 }
@@ -403,6 +414,7 @@ func (settingHandler *SettingHandler) DeleteWebhook() gin.HandlerFunc {
 // @Router /webhook/{id} [put]
 func (settingHandler *SettingHandler) UpdateWebhook() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -411,7 +423,7 @@ func (settingHandler *SettingHandler) UpdateWebhook() gin.HandlerFunc {
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 			}
 		}
 
@@ -419,7 +431,7 @@ func (settingHandler *SettingHandler) UpdateWebhook() gin.HandlerFunc {
 		var updatedWebhook model.WebhookDto
 		if err := ctx.ShouldBindJSON(&updatedWebhook); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -432,7 +444,7 @@ func (settingHandler *SettingHandler) UpdateWebhook() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_WEBHOOK_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_WEBHOOK_SUCCESS),
 		}
 	})
 }
@@ -450,6 +462,7 @@ func (settingHandler *SettingHandler) UpdateWebhook() gin.HandlerFunc {
 // @Router /webhook [post]
 func (settingHandler *SettingHandler) CreateWebhook() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -457,7 +470,7 @@ func (settingHandler *SettingHandler) CreateWebhook() gin.HandlerFunc {
 		var newWebhook model.WebhookDto
 		if err := ctx.ShouldBindJSON(&newWebhook); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -470,7 +483,7 @@ func (settingHandler *SettingHandler) CreateWebhook() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.CREATE_WEBHOOK_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.CREATE_WEBHOOK_SUCCESS),
 		}
 	})
 }
@@ -487,6 +500,7 @@ func (settingHandler *SettingHandler) CreateWebhook() gin.HandlerFunc {
 // @Router /access-tokens [get]
 func (settingHandler *SettingHandler) ListAccessTokens() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -500,7 +514,7 @@ func (settingHandler *SettingHandler) ListAccessTokens() gin.HandlerFunc {
 
 		return res.Response{
 			Data: result,
-			Msg:  commonModel.LIST_ACCESS_TOKENS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.LIST_ACCESS_TOKENS_SUCCESS),
 		}
 	})
 }
@@ -518,6 +532,7 @@ func (settingHandler *SettingHandler) ListAccessTokens() gin.HandlerFunc {
 // @Router /access-tokens [post]
 func (settingHandler *SettingHandler) CreateAccessToken() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -525,7 +540,7 @@ func (settingHandler *SettingHandler) CreateAccessToken() gin.HandlerFunc {
 		var newAccessToken model.AccessTokenSettingDto
 		if err := ctx.ShouldBindJSON(&newAccessToken); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -540,7 +555,7 @@ func (settingHandler *SettingHandler) CreateAccessToken() gin.HandlerFunc {
 
 		return res.Response{
 			Data: createdToken,
-			Msg:  commonModel.CREATE_ACCESS_TOKEN_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.CREATE_ACCESS_TOKEN_SUCCESS),
 		}
 	})
 }
@@ -558,6 +573,7 @@ func (settingHandler *SettingHandler) CreateAccessToken() gin.HandlerFunc {
 // @Router /access-tokens/{id} [delete]
 func (settingHandler *SettingHandler) DeleteAccessToken() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -566,7 +582,7 @@ func (settingHandler *SettingHandler) DeleteAccessToken() gin.HandlerFunc {
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 			}
 		}
 
@@ -578,7 +594,7 @@ func (settingHandler *SettingHandler) DeleteAccessToken() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.DELETE_ACCESS_TOKEN_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_ACCESS_TOKEN_SUCCESS),
 		}
 	})
 }
@@ -595,6 +611,7 @@ func (settingHandler *SettingHandler) DeleteAccessToken() gin.HandlerFunc {
 // @Router /fediverse/settings [get]
 func (settingHandler *SettingHandler) GetFediverseSettings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -608,7 +625,7 @@ func (settingHandler *SettingHandler) GetFediverseSettings() gin.HandlerFunc {
 
 		return res.Response{
 			Data: fediverseSettings,
-			Msg:  commonModel.GET_FEDIVERSE_SETTINGS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_FEDIVERSE_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -626,13 +643,14 @@ func (settingHandler *SettingHandler) GetFediverseSettings() gin.HandlerFunc {
 // @Router /fediverse/settings [put]
 func (settingHandler *SettingHandler) UpdateFediverseSettings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 		// 解析请求体中的参数
 		var newFediverseSettings model.FediverseSettingDto
 		if err := ctx.ShouldBindJSON(&newFediverseSettings); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -645,7 +663,7 @@ func (settingHandler *SettingHandler) UpdateFediverseSettings() gin.HandlerFunc 
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_FEDIVERSE_SETTINGS_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_FEDIVERSE_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -662,6 +680,7 @@ func (settingHandler *SettingHandler) UpdateFediverseSettings() gin.HandlerFunc 
 // @Router /backup/schedule [get]
 func (settingHandler *SettingHandler) GetBackupScheduleSetting() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		// userid := ctx.MustGet("userid").(uint)
 
@@ -675,7 +694,7 @@ func (settingHandler *SettingHandler) GetBackupScheduleSetting() gin.HandlerFunc
 
 		return res.Response{
 			Data: backupSchedule,
-			Msg:  commonModel.GET_SETTINGS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -693,13 +712,14 @@ func (settingHandler *SettingHandler) GetBackupScheduleSetting() gin.HandlerFunc
 // @Router /backup/schedule [post]
 func (settingHandler *SettingHandler) UpdateBackupScheduleSetting() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 		// 解析请求体中的参数
 		var backupSchedule model.BackupScheduleDto
 		if err := ctx.ShouldBindJSON(&backupSchedule); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -712,7 +732,7 @@ func (settingHandler *SettingHandler) UpdateBackupScheduleSetting() gin.HandlerF
 		}
 
 		return res.Response{
-			Msg: commonModel.SCHEDULE_BACKUP_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.SCHEDULE_BACKUP_SUCCESS),
 		}
 	})
 }
@@ -729,6 +749,7 @@ func (settingHandler *SettingHandler) UpdateBackupScheduleSetting() gin.HandlerF
 // @Router /agent/info [get]
 func (settingHandler *SettingHandler) GetAgentInfo() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		var settings model.AgentSetting
 		if err := settingHandler.settingService.GetAgentInfo(&settings); err != nil {
 			return res.Response{
@@ -743,7 +764,7 @@ func (settingHandler *SettingHandler) GetAgentInfo() gin.HandlerFunc {
 
 		return res.Response{
 			Data: settings,
-			Msg:  commonModel.GET_SETTINGS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -760,6 +781,7 @@ func (settingHandler *SettingHandler) GetAgentInfo() gin.HandlerFunc {
 // @Router /agent/settings [get]
 func (settingHandler *SettingHandler) GetAgentSettings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -773,7 +795,7 @@ func (settingHandler *SettingHandler) GetAgentSettings() gin.HandlerFunc {
 
 		return res.Response{
 			Data: settings,
-			Msg:  commonModel.GET_SETTINGS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_SETTINGS_SUCCESS),
 		}
 	})
 }
@@ -791,6 +813,7 @@ func (settingHandler *SettingHandler) GetAgentSettings() gin.HandlerFunc {
 // @Router /agent/settings [put]
 func (settingHandler *SettingHandler) UpdateAgentSettings() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -798,7 +821,7 @@ func (settingHandler *SettingHandler) UpdateAgentSettings() gin.HandlerFunc {
 		var newSettings model.AgentSettingDto
 		if err := ctx.ShouldBindJSON(&newSettings); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -811,7 +834,7 @@ func (settingHandler *SettingHandler) UpdateAgentSettings() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_SETTINGS_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_SETTINGS_SUCCESS),
 		}
 	})
 }

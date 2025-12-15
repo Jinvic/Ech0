@@ -35,11 +35,12 @@ func NewUserHandler(userService service.UserServiceInterface) *UserHandler {
 // @Router /login [post]
 func (userHandler *UserHandler) Login() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 从请求体获取用户名和密码
 		var loginDto authModel.LoginDto
 		if err := ctx.ShouldBindJSON(&loginDto); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -56,7 +57,7 @@ func (userHandler *UserHandler) Login() gin.HandlerFunc {
 		// 返回成功响应， 包含 JWT Token
 		return res.Response{
 			Data: token,
-			Msg:  commonModel.LOGIN_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.LOGIN_SUCCESS),
 		}
 	})
 }
@@ -74,10 +75,11 @@ func (userHandler *UserHandler) Login() gin.HandlerFunc {
 // @Router /register [post]
 func (userHandler *UserHandler) Register() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		var registerDto authModel.RegisterDto
 		if err := ctx.ShouldBindJSON(&registerDto); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -91,7 +93,7 @@ func (userHandler *UserHandler) Register() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.REGISTER_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.REGISTER_SUCCESS),
 		}
 	})
 }
@@ -110,11 +112,12 @@ func (userHandler *UserHandler) Register() gin.HandlerFunc {
 // @Router /user [put]
 func (userHandler *UserHandler) UpdateUser() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 解析用户请求体中的参数
 		var userdto model.UserInfoDto
 		if err := ctx.ShouldBindJSON(&userdto); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -129,7 +132,7 @@ func (userHandler *UserHandler) UpdateUser() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_USER_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_USER_SUCCESS),
 		}
 	})
 }
@@ -148,6 +151,7 @@ func (userHandler *UserHandler) UpdateUser() gin.HandlerFunc {
 // @Router /user/admin/{id} [put]
 func (userHandler *UserHandler) UpdateUserAdmin() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -155,7 +159,7 @@ func (userHandler *UserHandler) UpdateUserAdmin() gin.HandlerFunc {
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 				Err: err,
 			}
 		}
@@ -168,7 +172,7 @@ func (userHandler *UserHandler) UpdateUserAdmin() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_USER_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_USER_SUCCESS),
 		}
 	})
 }
@@ -186,6 +190,7 @@ func (userHandler *UserHandler) UpdateUserAdmin() gin.HandlerFunc {
 // @Router /allusers [get]
 func (userHandler *UserHandler) GetAllUsers() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		allusers, err := userHandler.userService.GetAllUsers()
 		if err != nil {
 			return res.Response{
@@ -196,7 +201,7 @@ func (userHandler *UserHandler) GetAllUsers() gin.HandlerFunc {
 
 		return res.Response{
 			Data: allusers,
-			Msg:  commonModel.GET_USER_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_USER_SUCCESS),
 		}
 	})
 }
@@ -215,6 +220,7 @@ func (userHandler *UserHandler) GetAllUsers() gin.HandlerFunc {
 // @Router /user/{id} [delete]
 func (userHandler *UserHandler) DeleteUser() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -222,7 +228,7 @@ func (userHandler *UserHandler) DeleteUser() gin.HandlerFunc {
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 				Err: err,
 			}
 		}
@@ -235,7 +241,7 @@ func (userHandler *UserHandler) DeleteUser() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.DELETE_USER_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_USER_SUCCESS),
 		}
 	})
 }
@@ -253,6 +259,7 @@ func (userHandler *UserHandler) DeleteUser() gin.HandlerFunc {
 // @Router /user [get]
 func (userHandler *UserHandler) GetUserInfo() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -269,7 +276,7 @@ func (userHandler *UserHandler) GetUserInfo() gin.HandlerFunc {
 		// 返回成功响应
 		return res.Response{
 			Data: user,
-			Msg:  commonModel.GET_USER_INFO_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_USER_INFO_SUCCESS),
 		}
 	})
 }
@@ -277,6 +284,7 @@ func (userHandler *UserHandler) GetUserInfo() gin.HandlerFunc {
 // BindGitHub 绑定 GitHub 账号
 func (userHandler *UserHandler) BindGitHub() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -286,7 +294,7 @@ func (userHandler *UserHandler) BindGitHub() gin.HandlerFunc {
 		var req Req
 		if err := ctx.ShouldBindJSON(&req); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -305,7 +313,7 @@ func (userHandler *UserHandler) BindGitHub() gin.HandlerFunc {
 
 		return res.Response{
 			Data: bindURL,
-			Msg:  commonModel.GET_OAUTH_BINGURL_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_OAUTH_BINGURL_SUCCESS),
 		}
 	})
 }
@@ -313,6 +321,7 @@ func (userHandler *UserHandler) BindGitHub() gin.HandlerFunc {
 // GitHubLogin 处理 GitHub OAuth2 登录请求
 func (userHandler *UserHandler) GitHubLogin() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取重定向 URL
 		redirect_URI := ctx.Query("redirect_uri")
 
@@ -322,7 +331,7 @@ func (userHandler *UserHandler) GitHubLogin() gin.HandlerFunc {
 		)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.FAILED_TO_GET_GITHUB_LOGIN_URL,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.FAILED_TO_GET_GITHUB_LOGIN_URL),
 				Err: err,
 			}
 		}
@@ -336,11 +345,12 @@ func (userHandler *UserHandler) GitHubLogin() gin.HandlerFunc {
 // GitHubCallback 处理 GitHub OAuth2 回调
 func (userHandler *UserHandler) GitHubCallback() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		code := ctx.Query("code")
 		state := ctx.Query("state")
 		if code == "" || state == "" {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 				Err: nil,
 			}
 		}
@@ -358,6 +368,7 @@ func (userHandler *UserHandler) GitHubCallback() gin.HandlerFunc {
 // BindGoogle 绑定 Google 账号
 func (userHandler *UserHandler) BindGoogle() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -367,7 +378,7 @@ func (userHandler *UserHandler) BindGoogle() gin.HandlerFunc {
 		var req Req
 		if err := ctx.ShouldBindJSON(&req); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -386,7 +397,7 @@ func (userHandler *UserHandler) BindGoogle() gin.HandlerFunc {
 
 		return res.Response{
 			Data: bindURL,
-			Msg:  commonModel.GET_OAUTH_BINGURL_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_OAUTH_BINGURL_SUCCESS),
 		}
 	})
 }
@@ -394,6 +405,7 @@ func (userHandler *UserHandler) BindGoogle() gin.HandlerFunc {
 // GoogleLogin 处理 Google OAuth2 登录请求
 func (userHandler *UserHandler) GoogleLogin() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取重定向 URL
 		redirect_URI := ctx.Query("redirect_uri")
 
@@ -403,7 +415,7 @@ func (userHandler *UserHandler) GoogleLogin() gin.HandlerFunc {
 		)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.FAILED_TO_GET_GOOGLE_LOGIN_URL,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.FAILED_TO_GET_GOOGLE_LOGIN_URL),
 				Err: err,
 			}
 		}
@@ -417,11 +429,12 @@ func (userHandler *UserHandler) GoogleLogin() gin.HandlerFunc {
 // GoogleCallback 处理 Google OAuth2 回调
 func (userHandler *UserHandler) GoogleCallback() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		code := ctx.Query("code")
 		state := ctx.Query("state")
 		if code == "" || state == "" {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 				Err: nil,
 			}
 		}
@@ -439,6 +452,7 @@ func (userHandler *UserHandler) GoogleCallback() gin.HandlerFunc {
 // QQLogin 处理 QQ OAuth2 登录请求
 func (userHandler *UserHandler) QQLogin() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取重定向 URL
 		redirect_URI := ctx.Query("redirect_uri")
 
@@ -448,7 +462,7 @@ func (userHandler *UserHandler) QQLogin() gin.HandlerFunc {
 		)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.FAILED_TO_GET_QQ_LOGIN_URL,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.FAILED_TO_GET_QQ_LOGIN_URL),
 				Err: err,
 			}
 		}
@@ -462,11 +476,12 @@ func (userHandler *UserHandler) QQLogin() gin.HandlerFunc {
 // QQCallback 处理 QQ OAuth2 回调
 func (userHandler *UserHandler) QQCallback() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		code := ctx.Query("code")
 		state := ctx.Query("state")
 		if code == "" || state == "" {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 				Err: nil,
 			}
 		}
@@ -484,6 +499,7 @@ func (userHandler *UserHandler) QQCallback() gin.HandlerFunc {
 // BindQQ 绑定 QQ 账号
 func (userHandler *UserHandler) BindQQ() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -493,7 +509,7 @@ func (userHandler *UserHandler) BindQQ() gin.HandlerFunc {
 		var req Req
 		if err := ctx.ShouldBindJSON(&req); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -512,7 +528,7 @@ func (userHandler *UserHandler) BindQQ() gin.HandlerFunc {
 
 		return res.Response{
 			Data: bindURL,
-			Msg:  commonModel.GET_OAUTH_BINGURL_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_OAUTH_BINGURL_SUCCESS),
 		}
 	})
 }
@@ -520,6 +536,7 @@ func (userHandler *UserHandler) BindQQ() gin.HandlerFunc {
 // CustomOAuthLogin 处理自定义 OAuth2 登录请求
 func (userHandler *UserHandler) CustomOAuthLogin() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取重定向 URL
 		redirect_URI := ctx.Query("redirect_uri")
 
@@ -529,7 +546,7 @@ func (userHandler *UserHandler) CustomOAuthLogin() gin.HandlerFunc {
 		)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.FAILED_TO_GET_CUSTOM_LOGIN_URL,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.FAILED_TO_GET_CUSTOM_LOGIN_URL),
 				Err: err,
 			}
 		}
@@ -543,11 +560,12 @@ func (userHandler *UserHandler) CustomOAuthLogin() gin.HandlerFunc {
 // CustomOAuthCallback 处理自定义 OAuth2 回调
 func (userHandler *UserHandler) CustomOAuthCallback() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		code := ctx.Query("code")
 		state := ctx.Query("state")
 		if code == "" || state == "" {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 				Err: nil,
 			}
 		}
@@ -565,6 +583,7 @@ func (userHandler *UserHandler) CustomOAuthCallback() gin.HandlerFunc {
 // BindCustomOAuth 绑定自定义 OAuth2 账号
 func (userHandler *UserHandler) BindCustomOAuth() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -574,7 +593,7 @@ func (userHandler *UserHandler) BindCustomOAuth() gin.HandlerFunc {
 		var req Req
 		if err := ctx.ShouldBindJSON(&req); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -593,7 +612,7 @@ func (userHandler *UserHandler) BindCustomOAuth() gin.HandlerFunc {
 
 		return res.Response{
 			Data: bindURL,
-			Msg:  commonModel.GET_OAUTH_BINGURL_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_OAUTH_BINGURL_SUCCESS),
 		}
 	})
 }
@@ -601,6 +620,7 @@ func (userHandler *UserHandler) BindCustomOAuth() gin.HandlerFunc {
 // GetOAuthInfo 获取 OAuth2 配置信息
 func (userHandler *UserHandler) GetOAuthInfo() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -621,7 +641,7 @@ func (userHandler *UserHandler) GetOAuthInfo() gin.HandlerFunc {
 
 		return res.Response{
 			Data: oauthInfo,
-			Msg:  commonModel.GET_OAUTH_INFO_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_OAUTH_INFO_SUCCESS),
 		}
 	})
 }

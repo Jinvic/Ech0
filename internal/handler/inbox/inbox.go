@@ -35,12 +35,13 @@ func NewInboxHandler(inboxService service.InboxServiceInterface) *InboxHandler {
 // @Router /inbox [get]
 func (inboxHandler *InboxHandler) GetInboxList() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userid := ctx.MustGet("userid").(uint)
 
 		var pageQuery commonModel.PageQueryDto
 		if err := ctx.ShouldBindQuery(&pageQuery); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_QUERY_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_QUERY_PARAMS),
 				Err: err,
 			}
 		}
@@ -52,7 +53,7 @@ func (inboxHandler *InboxHandler) GetInboxList() gin.HandlerFunc {
 
 		return res.Response{
 			Data: result,
-			Msg:  commonModel.GET_INBOX_LIST_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_INBOX_LIST_SUCCESS),
 		}
 	})
 }
@@ -69,6 +70,7 @@ func (inboxHandler *InboxHandler) GetInboxList() gin.HandlerFunc {
 // @Router /inbox/unread [get]
 func (inboxHandler *InboxHandler) GetUnreadInbox() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userid := ctx.MustGet("userid").(uint)
 
 		inboxes, err := inboxHandler.inboxService.GetUnreadInbox(userid)
@@ -78,7 +80,7 @@ func (inboxHandler *InboxHandler) GetUnreadInbox() gin.HandlerFunc {
 
 		return res.Response{
 			Data: inboxes,
-			Msg:  commonModel.GET_UNREAD_INBOX_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_UNREAD_INBOX_SUCCESS),
 		}
 	})
 }
@@ -96,12 +98,13 @@ func (inboxHandler *InboxHandler) GetUnreadInbox() gin.HandlerFunc {
 // @Router /inbox/{id}/read [put]
 func (inboxHandler *InboxHandler) MarkInboxAsRead() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userid := ctx.MustGet("userid").(uint)
 
 		inboxID, err := parseUintParam(ctx.Param("id"))
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS_BODY),
 				Err: err,
 			}
 		}
@@ -110,7 +113,7 @@ func (inboxHandler *InboxHandler) MarkInboxAsRead() gin.HandlerFunc {
 			return res.Response{Err: err}
 		}
 
-		return res.Response{Msg: commonModel.MARK_INBOX_READ_SUCCESS}
+		return res.Response{Msg: commonModel.GetSuccessMessage(lang, commonModel.MARK_INBOX_READ_SUCCESS)}
 	})
 }
 
@@ -127,12 +130,13 @@ func (inboxHandler *InboxHandler) MarkInboxAsRead() gin.HandlerFunc {
 // @Router /inbox/{id} [delete]
 func (inboxHandler *InboxHandler) DeleteInbox() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userid := ctx.MustGet("userid").(uint)
 
 		inboxID, err := parseUintParam(ctx.Param("id"))
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS_BODY),
 				Err: err,
 			}
 		}
@@ -141,7 +145,7 @@ func (inboxHandler *InboxHandler) DeleteInbox() gin.HandlerFunc {
 			return res.Response{Err: err}
 		}
 
-		return res.Response{Msg: commonModel.DELETE_INBOX_SUCCESS}
+		return res.Response{Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_INBOX_SUCCESS)}
 	})
 }
 
@@ -157,13 +161,14 @@ func (inboxHandler *InboxHandler) DeleteInbox() gin.HandlerFunc {
 // @Router /inbox [delete]
 func (inboxHandler *InboxHandler) ClearInbox() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userid := ctx.MustGet("userid").(uint)
 
 		if err := inboxHandler.inboxService.ClearInbox(userid); err != nil {
 			return res.Response{Err: err}
 		}
 
-		return res.Response{Msg: commonModel.CLEAR_INBOX_SUCCESS}
+		return res.Response{Msg: commonModel.GetSuccessMessage(lang, commonModel.CLEAR_INBOX_SUCCESS)}
 	})
 }
 

@@ -50,11 +50,12 @@ func NewCommonHandler(commonService service.CommonServiceInterface) *CommonHandl
 // @Router /images/upload [post]
 func (commonHandler *CommonHandler) UploadImage() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 提取上传的 File数据
 		file, err := ctx.FormFile("file")
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -73,7 +74,7 @@ func (commonHandler *CommonHandler) UploadImage() gin.HandlerFunc {
 
 		return res.Response{
 			Data: imageUrl,
-			Msg:  commonModel.UPLOAD_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.UPLOAD_SUCCESS),
 		}
 	})
 }
@@ -91,12 +92,13 @@ func (commonHandler *CommonHandler) UploadImage() gin.HandlerFunc {
 // @Router /images/delete [delete]
 func (commonHandler *CommonHandler) DeleteImage() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userId := ctx.MustGet("userid").(uint)
 
 		var imageDto commonModel.ImageDto
 		if err := ctx.ShouldBindJSON(&imageDto); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -113,7 +115,7 @@ func (commonHandler *CommonHandler) DeleteImage() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.DELETE_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_SUCCESS),
 		}
 	})
 }
@@ -130,11 +132,12 @@ func (commonHandler *CommonHandler) DeleteImage() gin.HandlerFunc {
 // @Router /status [get]
 func (commonHandler *CommonHandler) GetStatus() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		_, err := commonHandler.commonService.GetSysAdmin()
 		if err != nil {
 			return res.Response{
 				Code: commonModel.InitInstallCode,
-				Msg:  commonModel.SIGNUP_FIRST,
+				Msg:  commonModel.GetErrorMessage(lang, commonModel.SIGNUP_FIRST),
 			}
 		}
 
@@ -148,7 +151,7 @@ func (commonHandler *CommonHandler) GetStatus() gin.HandlerFunc {
 
 		return res.Response{
 			Data: status,
-			Msg:  commonModel.GET_STATUS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_STATUS_SUCCESS),
 		}
 	})
 }
@@ -165,6 +168,7 @@ func (commonHandler *CommonHandler) GetStatus() gin.HandlerFunc {
 // @Router /heatmap [get]
 func (commonHandler *CommonHandler) GetHeatMap() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 调用 Service 层获取热力图数据
 		heatMap, err := commonHandler.commonService.GetHeatMap()
 		if err != nil {
@@ -176,7 +180,7 @@ func (commonHandler *CommonHandler) GetHeatMap() gin.HandlerFunc {
 
 		return res.Response{
 			Data: heatMap,
-			Msg:  commonModel.GET_HEATMAP_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_HEATMAP_SUCCESS),
 		}
 	})
 }
@@ -217,6 +221,7 @@ func (commonHandler *CommonHandler) GetRss(ctx *gin.Context) {
 // @Router /audios/upload [post]
 func (commonHandler *CommonHandler) UploadAudio() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 提取userid
 		userId := ctx.MustGet("userid").(uint)
 
@@ -224,7 +229,7 @@ func (commonHandler *CommonHandler) UploadAudio() gin.HandlerFunc {
 		file, err := ctx.FormFile("file")
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -239,7 +244,7 @@ func (commonHandler *CommonHandler) UploadAudio() gin.HandlerFunc {
 
 		return res.Response{
 			Data: audioUrl,
-			Msg:  commonModel.UPLOAD_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.UPLOAD_SUCCESS),
 		}
 	})
 }
@@ -256,6 +261,7 @@ func (commonHandler *CommonHandler) UploadAudio() gin.HandlerFunc {
 // @Router /audios/delete [delete]
 func (commonHandler *CommonHandler) DeleteAudio() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 提取userid
 		userId := ctx.MustGet("userid").(uint)
 
@@ -267,7 +273,7 @@ func (commonHandler *CommonHandler) DeleteAudio() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.DELETE_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_SUCCESS),
 		}
 	})
 }
@@ -284,11 +290,12 @@ func (commonHandler *CommonHandler) DeleteAudio() gin.HandlerFunc {
 // @Router /getmusic [get]
 func (commonHandler *CommonHandler) GetPlayMusic() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		musicUrl := commonHandler.commonService.GetPlayMusicUrl()
 
 		return res.Response{
 			Data: musicUrl,
-			Msg:  commonModel.GET_MUSIC_URL_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_MUSIC_URL_SUCCESS),
 		}
 	})
 }
@@ -318,6 +325,7 @@ func (commonHandler *CommonHandler) PlayMusic(ctx *gin.Context) {
 // @Router /hello [get]
 func (commonHandler *CommonHandler) HelloEch0() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		hello := struct {
 			Hello   string `json:"hello"`
 			Version string `json:"version"`
@@ -329,7 +337,7 @@ func (commonHandler *CommonHandler) HelloEch0() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg:  commonModel.GET_HELLO_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_HELLO_SUCCESS),
 			Data: hello,
 		}
 	})
@@ -348,12 +356,13 @@ func (commonHandler *CommonHandler) HelloEch0() gin.HandlerFunc {
 // @Router /s3/presign [put]
 func (commonHandler *CommonHandler) GetS3PresignURL() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userId := ctx.MustGet("userid").(uint)
 		// 解析请求体中的参数
 		var s3Dto commonModel.GetPresignURLDto
 		if err := ctx.ShouldBindJSON(&s3Dto); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -368,7 +377,7 @@ func (commonHandler *CommonHandler) GetS3PresignURL() gin.HandlerFunc {
 
 		return res.Response{
 			Data: presignDto,
-			Msg:  commonModel.GET_S3_PRESIGN_URL_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_S3_PRESIGN_URL_SUCCESS),
 		}
 	})
 }
@@ -386,10 +395,11 @@ func (commonHandler *CommonHandler) GetS3PresignURL() gin.HandlerFunc {
 // @Router /website/title [get]
 func (commonHandler *CommonHandler) GetWebsiteTitle() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		var dto commonModel.GetWebsiteTitleDto
 		if err := ctx.ShouldBindQuery(&dto); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_QUERY_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_QUERY_PARAMS),
 				Err: err,
 			}
 		}
@@ -402,7 +412,7 @@ func (commonHandler *CommonHandler) GetWebsiteTitle() gin.HandlerFunc {
 		}
 		return res.Response{
 			Data: title,
-			Msg:  commonModel.GET_WEBSITE_TITLE_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_WEBSITE_TITLE_SUCCESS),
 		}
 	})
 }

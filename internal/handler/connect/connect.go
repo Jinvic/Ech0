@@ -35,12 +35,13 @@ func NewConnectHandler(connectService service.ConnectServiceInterface) *ConnectH
 // @Router /addConnect [post]
 func (connectHandler *ConnectHandler) AddConnect() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userId := ctx.MustGet("userid").(uint)
 
 		var connected model.Connected
 		if err := ctx.ShouldBindJSON(&connected); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 			}
 		}
 
@@ -52,7 +53,7 @@ func (connectHandler *ConnectHandler) AddConnect() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.ADD_CONNECT_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.ADD_CONNECT_SUCCESS),
 		}
 	})
 }
@@ -70,6 +71,7 @@ func (connectHandler *ConnectHandler) AddConnect() gin.HandlerFunc {
 // @Router /delConnect/{id} [delete]
 func (connectHandler *ConnectHandler) DeleteConnect() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userId := ctx.MustGet("userid").(uint)
 
 		// 从 URL 参数获取 ID
@@ -77,7 +79,7 @@ func (connectHandler *ConnectHandler) DeleteConnect() gin.HandlerFunc {
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 			}
 		}
 
@@ -89,7 +91,7 @@ func (connectHandler *ConnectHandler) DeleteConnect() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.DELETE_CONNECT_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_CONNECT_SUCCESS),
 		}
 	})
 }
@@ -106,6 +108,7 @@ func (connectHandler *ConnectHandler) DeleteConnect() gin.HandlerFunc {
 // @Router /connects/info [get]
 func (connectHandler *ConnectHandler) GetConnectsInfo() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 调用 Service 层获取 Connect 信息
 		connects, err := connectHandler.connectService.GetConnectsInfo()
 		if err != nil {
@@ -117,7 +120,7 @@ func (connectHandler *ConnectHandler) GetConnectsInfo() gin.HandlerFunc {
 
 		return res.Response{
 			Data: connects,
-			Msg:  commonModel.GET_CONNECT_INFO_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_CONNECT_INFO_SUCCESS),
 		}
 	})
 }
@@ -134,6 +137,7 @@ func (connectHandler *ConnectHandler) GetConnectsInfo() gin.HandlerFunc {
 // @Router /connect [get]
 func (connectHandler *ConnectHandler) GetConnect() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		connect, err := connectHandler.connectService.GetConnect()
 		if err != nil {
 			return res.Response{
@@ -144,7 +148,7 @@ func (connectHandler *ConnectHandler) GetConnect() gin.HandlerFunc {
 
 		return res.Response{
 			Data: connect,
-			Msg:  commonModel.CONNECT_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.CONNECT_SUCCESS),
 		}
 	})
 }
@@ -161,6 +165,7 @@ func (connectHandler *ConnectHandler) GetConnect() gin.HandlerFunc {
 // @Router /connect/list [get]
 func (connectHandler *ConnectHandler) GetConnects() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 调用 Service 层获取 Connect 列表
 		connects, err := connectHandler.connectService.GetConnects()
 		if err != nil {
@@ -172,7 +177,7 @@ func (connectHandler *ConnectHandler) GetConnects() gin.HandlerFunc {
 
 		return res.Response{
 			Data: connects,
-			Msg:  commonModel.GET_CONNECTED_LIST_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_CONNECTED_LIST_SUCCESS),
 		}
 	})
 }

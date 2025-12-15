@@ -34,6 +34,7 @@ func NewBackupHandler(backupService service.BackupServiceInterface) *BackupHandl
 // @Router /backup [get]
 func (backupHandler *BackupHandler) Backup() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		userId := ctx.MustGet("userid").(uint)
 		if err := backupHandler.backupService.Backup(userId); err != nil {
 			return res.Response{
@@ -43,7 +44,7 @@ func (backupHandler *BackupHandler) Backup() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.BACKUP_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.BACKUP_SUCCESS),
 		}
 	})
 }
@@ -60,10 +61,11 @@ func (backupHandler *BackupHandler) Backup() gin.HandlerFunc {
 // @Router /backup/export [get]
 func (backupHandler *BackupHandler) ExportBackup() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		token := ctx.Query("token")
 		if token == "" {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 			}
 		}
 
@@ -73,7 +75,7 @@ func (backupHandler *BackupHandler) ExportBackup() gin.HandlerFunc {
 		claims, err := jwtUtil.ParseToken(token)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.TOKEN_NOT_VALID,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.TOKEN_NOT_VALID),
 				Err: err,
 			}
 		}
@@ -88,7 +90,7 @@ func (backupHandler *BackupHandler) ExportBackup() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.EXPORT_BACKUP_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.EXPORT_BACKUP_SUCCESS),
 		}
 	})
 }
@@ -106,6 +108,7 @@ func (backupHandler *BackupHandler) ExportBackup() gin.HandlerFunc {
 // @Router /backup/import [post]
 func (backupHandler *BackupHandler) ImportBackup() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 提取userid
 		userId := ctx.MustGet("userid").(uint)
 
@@ -113,7 +116,7 @@ func (backupHandler *BackupHandler) ImportBackup() gin.HandlerFunc {
 		file, err := ctx.FormFile("file")
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -126,7 +129,7 @@ func (backupHandler *BackupHandler) ImportBackup() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.IMPORT_BACKUP_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.IMPORT_BACKUP_SUCCESS),
 		}
 	})
 }

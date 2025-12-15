@@ -33,13 +33,14 @@ func NewTodoHandler(todoService service.TodoServiceInterface) *TodoHandler {
 // @Router /todo [post]
 func (todoHandler *TodoHandler) AddTodo() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
 		var todo model.Todo
 		if err := ctx.ShouldBindJSON(&todo); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -52,7 +53,7 @@ func (todoHandler *TodoHandler) AddTodo() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.ADD_TODO_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.ADD_TODO_SUCCESS),
 		}
 	})
 }
@@ -70,6 +71,7 @@ func (todoHandler *TodoHandler) AddTodo() gin.HandlerFunc {
 // @Router /todo/{id} [put]
 func (todoHandler *TodoHandler) UpdateTodo() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -78,7 +80,7 @@ func (todoHandler *TodoHandler) UpdateTodo() gin.HandlerFunc {
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS_BODY),
 				Err: err,
 			}
 		}
@@ -91,7 +93,7 @@ func (todoHandler *TodoHandler) UpdateTodo() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_TODO_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_TODO_SUCCESS),
 		}
 	})
 }
@@ -109,6 +111,7 @@ func (todoHandler *TodoHandler) UpdateTodo() gin.HandlerFunc {
 // @Router /todo/{id} [delete]
 func (todoHandler *TodoHandler) DeleteTodo() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -117,7 +120,7 @@ func (todoHandler *TodoHandler) DeleteTodo() gin.HandlerFunc {
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS_BODY),
 				Err: err,
 			}
 		}
@@ -130,7 +133,7 @@ func (todoHandler *TodoHandler) DeleteTodo() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.DELETE_TODO_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_TODO_SUCCESS),
 		}
 	})
 }
@@ -147,6 +150,7 @@ func (todoHandler *TodoHandler) DeleteTodo() gin.HandlerFunc {
 // @Router /todo [get]
 func (todoHandler *TodoHandler) GetTodoList() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -160,7 +164,7 @@ func (todoHandler *TodoHandler) GetTodoList() gin.HandlerFunc {
 
 		return res.Response{
 			Data: todos,
-			Msg:  commonModel.GET_TODO_LIST_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_TODO_LIST_SUCCESS),
 		}
 	})
 }

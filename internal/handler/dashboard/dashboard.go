@@ -35,6 +35,7 @@ func NewDashboardHandler(dashboardService service.DashboardServiceInterface) *Da
 // @Router /metrics [get]
 func (dashboardHandler *DashboardHandler) GetMetrics() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		metrics, err := dashboardHandler.dashboardService.GetMetrics()
 		if err != nil {
 			return res.Response{
@@ -45,7 +46,7 @@ func (dashboardHandler *DashboardHandler) GetMetrics() gin.HandlerFunc {
 
 		return res.Response{
 			Data: metrics,
-			Msg:  commonModel.GET_METRICS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_METRICS_SUCCESS),
 		}
 	})
 }

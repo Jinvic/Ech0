@@ -36,10 +36,11 @@ func NewEchoHandler(echoService service.EchoServiceInterface) *EchoHandler {
 // @Router /echo [post]
 func (echoHandler *EchoHandler) PostEcho() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		var newEcho model.Echo
 		if err := ctx.ShouldBindJSON(&newEcho); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -53,7 +54,7 @@ func (echoHandler *EchoHandler) PostEcho() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.POST_ECHO_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.POST_ECHO_SUCCESS),
 		}
 	})
 }
@@ -74,6 +75,7 @@ func (echoHandler *EchoHandler) PostEcho() gin.HandlerFunc {
 // @Router /echo/page [post]
 func (echoHandler *EchoHandler) GetEchosByPage() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取分页参数
 		var pageRequest commonModel.PageQueryDto
 
@@ -82,7 +84,7 @@ func (echoHandler *EchoHandler) GetEchosByPage() gin.HandlerFunc {
 			// 尝试从 query 中获取分页参数
 			if err := ctx.ShouldBindQuery(&pageRequest); err != nil {
 				return res.Response{
-					Msg: commonModel.INVALID_QUERY_PARAMS,
+					Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_QUERY_PARAMS),
 					Err: err,
 				}
 			}
@@ -91,7 +93,7 @@ func (echoHandler *EchoHandler) GetEchosByPage() gin.HandlerFunc {
 			// 尝试从 JSON 中获取分页参数
 			if err := ctx.ShouldBindJSON(&pageRequest); err != nil {
 				return res.Response{
-					Msg: commonModel.INVALID_REQUEST_BODY,
+					Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 					Err: err,
 				}
 			}
@@ -100,8 +102,8 @@ func (echoHandler *EchoHandler) GetEchosByPage() gin.HandlerFunc {
 			// 如果不是 GET 或 POST 请求，返回错误
 			{
 				return res.Response{
-					Msg: commonModel.INVALID_REQUEST_METHOD,
-					Err: errors.New(commonModel.INVALID_REQUEST_METHOD),
+					Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_METHOD),
+					Err: errors.New(commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_METHOD)),
 				}
 			}
 		}
@@ -118,7 +120,7 @@ func (echoHandler *EchoHandler) GetEchosByPage() gin.HandlerFunc {
 
 		return res.Response{
 			Data: result,
-			Msg:  commonModel.GET_ECHOS_BY_PAGE_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_ECHOS_BY_PAGE_SUCCESS),
 		}
 	})
 }
@@ -136,6 +138,7 @@ func (echoHandler *EchoHandler) GetEchosByPage() gin.HandlerFunc {
 // @Router /echo/{id} [delete]
 func (echoHandler *EchoHandler) DeleteEcho() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 
@@ -144,7 +147,7 @@ func (echoHandler *EchoHandler) DeleteEcho() gin.HandlerFunc {
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 			}
 		}
 
@@ -156,7 +159,7 @@ func (echoHandler *EchoHandler) DeleteEcho() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.DELETE_ECHO_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_ECHO_SUCCESS),
 		}
 	})
 }
@@ -173,6 +176,7 @@ func (echoHandler *EchoHandler) DeleteEcho() gin.HandlerFunc {
 // @Router /echo/today [get]
 func (echoHandler *EchoHandler) GetTodayEchos() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 获取当前用户 ID
 		userid := ctx.MustGet("userid").(uint)
 		result, err := echoHandler.echoService.GetTodayEchos(userid)
@@ -185,7 +189,7 @@ func (echoHandler *EchoHandler) GetTodayEchos() gin.HandlerFunc {
 
 		return res.Response{
 			Data: result,
-			Msg:  commonModel.GET_TODAY_ECHOS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_TODAY_ECHOS_SUCCESS),
 		}
 	})
 }
@@ -203,10 +207,11 @@ func (echoHandler *EchoHandler) GetTodayEchos() gin.HandlerFunc {
 // @Router /echo [put]
 func (echoHandler *EchoHandler) UpdateEcho() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		var updateEcho model.Echo
 		if err := ctx.ShouldBindJSON(&updateEcho); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_REQUEST_BODY,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_REQUEST_BODY),
 				Err: err,
 			}
 		}
@@ -220,7 +225,7 @@ func (echoHandler *EchoHandler) UpdateEcho() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.UPDATE_ECHO_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.UPDATE_ECHO_SUCCESS),
 		}
 	})
 }
@@ -238,12 +243,13 @@ func (echoHandler *EchoHandler) UpdateEcho() gin.HandlerFunc {
 // @Router /echo/like/{id} [put]
 func (echoHandler *EchoHandler) LikeEcho() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 从 URL 参数获取Echo ID
 		idStr := ctx.Param("id")
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 			}
 		}
 
@@ -255,7 +261,7 @@ func (echoHandler *EchoHandler) LikeEcho() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.LIKE_ECHO_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.LIKE_ECHO_SUCCESS),
 		}
 	})
 }
@@ -273,12 +279,13 @@ func (echoHandler *EchoHandler) LikeEcho() gin.HandlerFunc {
 // @Router /echo/{id} [get]
 func (echoHandler *EchoHandler) GetEchoById() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 从 URL 参数获取Echo ID
 		idStr := ctx.Param("id")
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 			}
 		}
 
@@ -294,7 +301,7 @@ func (echoHandler *EchoHandler) GetEchoById() gin.HandlerFunc {
 
 		return res.Response{
 			Data: echo,
-			Msg:  commonModel.GET_ECHO_BY_ID_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_ECHO_BY_ID_SUCCESS),
 		}
 	})
 }
@@ -311,6 +318,7 @@ func (echoHandler *EchoHandler) GetEchoById() gin.HandlerFunc {
 // @Router /tags [get]
 func (echoHandler *EchoHandler) GetAllTags() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		tags, err := echoHandler.echoService.GetAllTags()
 		if err != nil {
 			return res.Response{
@@ -321,7 +329,7 @@ func (echoHandler *EchoHandler) GetAllTags() gin.HandlerFunc {
 
 		return res.Response{
 			Data: tags,
-			Msg:  commonModel.GET_ALL_TAGS_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_ALL_TAGS_SUCCESS),
 		}
 	})
 }
@@ -339,12 +347,13 @@ func (echoHandler *EchoHandler) GetAllTags() gin.HandlerFunc {
 // @Router /tag/{id} [delete]
 func (echoHandler *EchoHandler) DeleteTag() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 从 URL 参数获取标签 ID
 		idStr := ctx.Param("id")
 		id, err := strconv.ParseUint(idStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 			}
 		}
 
@@ -358,7 +367,7 @@ func (echoHandler *EchoHandler) DeleteTag() gin.HandlerFunc {
 		}
 
 		return res.Response{
-			Msg: commonModel.DELETE_TAG_SUCCESS,
+			Msg: commonModel.GetSuccessMessage(lang, commonModel.DELETE_TAG_SUCCESS),
 		}
 	})
 }
@@ -379,12 +388,13 @@ func (echoHandler *EchoHandler) DeleteTag() gin.HandlerFunc {
 // @Router /echo/tag/{tagid} [get]
 func (echoHandler *EchoHandler) GetEchosByTagId() gin.HandlerFunc {
 	return res.Execute(func(ctx *gin.Context) res.Response {
+		lang := ctx.MustGet("lang").(string)
 		// 从 URL 参数获取标签 ID
 		tagIdStr := ctx.Param("tagid")
 		tagId, err := strconv.ParseUint(tagIdStr, 10, 64)
 		if err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_PARAMS),
 			}
 		}
 
@@ -392,7 +402,7 @@ func (echoHandler *EchoHandler) GetEchosByTagId() gin.HandlerFunc {
 		var pageRequest commonModel.PageQueryDto
 		if err := ctx.ShouldBindQuery(&pageRequest); err != nil {
 			return res.Response{
-				Msg: commonModel.INVALID_QUERY_PARAMS,
+				Msg: commonModel.GetErrorMessage(lang, commonModel.INVALID_QUERY_PARAMS),
 				Err: err,
 			}
 		}
@@ -409,7 +419,7 @@ func (echoHandler *EchoHandler) GetEchosByTagId() gin.HandlerFunc {
 
 		return res.Response{
 			Data: result,
-			Msg:  commonModel.GET_ECHOS_BY_TAG_ID_SUCCESS,
+			Msg:  commonModel.GetSuccessMessage(lang, commonModel.GET_ECHOS_BY_TAG_ID_SUCCESS),
 		}
 	})
 }
